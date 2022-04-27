@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="289.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.RegistrationController">
+   <children>
+      <TextField fx:id="registrationTextUsername" layoutX="64.0" layoutY="93.0" />
+      <PasswordField fx:id="registrationPassword" layoutX="64.0" layoutY="154.0" />
+      <PasswordField fx:id="registrationConfirmPassword" layoutX="64.0" layoutY="209.0" />
+      <Label layoutX="64.0" layoutY="63.0" text="name" />
+      <Label layoutX="64.0" layoutY="125.0" text="pas" />
+      <Label layoutX="64.0" layoutY="192.0" text="conf pas" />
+      <Button fx:id="registrationButtonSignUp" layoutX="111.0" layoutY="269.0" mnemonicParsing="false" text="SignUp" />
+   </children>
+</AnchorPane>
