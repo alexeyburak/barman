@@ -5,7 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="289.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.RegistrationController">
    <children>
@@ -15,6 +15,11 @@
       <Label layoutX="64.0" layoutY="63.0" text="name" />
       <Label layoutX="64.0" layoutY="125.0" text="pas" />
       <Label layoutX="64.0" layoutY="192.0" text="conf pas" />
-      <Button fx:id="registrationButtonSignUp" layoutX="111.0" layoutY="269.0" mnemonicParsing="false" text="SignUp" />
+      <Button fx:id="registrationButtonSignUp" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" text="SignUp" />
+      <Label fx:id="registrationLabelWrong" layoutX="129.0" layoutY="255.0" textFill="#eb0303">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,4 +1,4 @@
-package com.burak.barman.utils;
+package com.burak.barman;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

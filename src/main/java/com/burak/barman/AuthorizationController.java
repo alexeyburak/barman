@@ -1,21 +1,15 @@
 package com.burak.barman;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.burak.barman.utils.GetHash;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 public class AuthorizationController implements Initializable {
@@ -25,32 +19,27 @@ public class AuthorizationController implements Initializable {
     @FXML private Button authorizationButtonAccept;
     @FXML private Button authorizationButtonNewUser;
     @FXML private Button authorizationButtonBack;
+    @FXML private Label authorizationLabelWrong;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
 
-        authorizationButtonAccept.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.logInUser(event, authorizationTextUsername.getText(), authorizationTextPassword.getText());
-
+        authorizationButtonAccept.setOnAction(event -> {
+            if (!authorizationTextUsername.getText().isEmpty() && !authorizationTextPassword.getText().isEmpty()) {
+                try {
+                    DBUtils.logInUser(event, authorizationTextUsername.getText(), String.valueOf(GetHash.getHash(authorizationTextPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                authorizationLabelWrong.setText("Fill ALL!");
             }
+
         });
 
-        authorizationButtonBack.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "mainStage.fxml");
+        authorizationButtonBack.setOnAction(event -> DBUtils.changeScene(event, "mainStage.fxml"));
 
-            }
-        });
-
-        authorizationButtonNewUser.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "registration.fxml");
-            }
-        });
+        authorizationButtonNewUser.setOnAction(event -> DBUtils.changeScene(event, "registration.fxml"));
 
     }
 

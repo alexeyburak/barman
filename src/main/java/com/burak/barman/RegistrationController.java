@@ -1,15 +1,12 @@
 package com.burak.barman;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.burak.barman.utils.GetHash;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 public class RegistrationController implements Initializable {
@@ -18,24 +15,24 @@ public class RegistrationController implements Initializable {
     @FXML private PasswordField registrationPassword;
     @FXML private PasswordField registrationConfirmPassword;
     @FXML private Button registrationButtonSignUp;
+    @FXML private Label registrationLabelWrong;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        registrationButtonSignUp.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        registrationButtonSignUp.setOnAction(event -> {
 
-                if (!registrationTextUsername.getText().trim().isEmpty()) {
-                    DBUtils.signUpUser(event, registrationTextUsername.getText(), registrationPassword.getText());
-                } else {
-                    System.out.println("Fill all");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.show();
+            if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
+                registrationLabelWrong.setText("passwords don't match");
+            } else if (!registrationTextUsername.getText().trim().isEmpty() && !registrationPassword.getText().isEmpty() && !registrationPassword.getText().isEmpty()) {
+                try {
+                    DBUtils.signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
                 }
+            } else {
+                registrationLabelWrong.setText("Fill all");
             }
         });
-
-
     }
 }
