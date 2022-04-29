@@ -1,11 +1,12 @@
-package com.burak.barman;
+package com.burak.barman.utils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,10 @@ import java.sql.*;
 import java.util.Objects;
 
 public class DBUtils {
+
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/barman";
+    private static final String DATABASE_USER = "root";
+    private static final String DATABASE_PASSWORD = "alexeyburak";
     
     public static void changeScene(ActionEvent event, String fxmlFile) {
         Parent root = null;
@@ -28,25 +33,22 @@ public class DBUtils {
         stage.show();
     }
 
-    public static void signUpUser(ActionEvent event, String username, String password) {
+    public static void signUpUser(ActionEvent event, String username, String password, Label labelWrong) {
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/barman", "root", "alexeyburak");
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
             resultSet = psCheckUserExists.executeQuery();
 
             if (resultSet.isBeforeFirst()) {
-                System.out.println("User exists");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("dafad");
-                alert.show();
+                labelWrong.setText("User exists");
             } else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?))");
+                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
@@ -88,26 +90,27 @@ public class DBUtils {
         }
     }
 
-    public static  void logInUser(ActionEvent event, String username, String password) {
+    public static  void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
         Connection connection = null;
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/barman", "root", "alexeyburak");
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
             prepareStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             prepareStatement.setString(1, username);
             resultSet = prepareStatement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.show();
+                labelWrong.setText("There is no account");
+                passwordField.setText("");
             } else {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
                         changeScene(event, "mainStage.fxml");
                     } else {
-                        System.out.println("Pass didnt match");
+                        labelWrong.setText("Pass didnt match");
+                        passwordField.setText("");
                     }
                 }
 
