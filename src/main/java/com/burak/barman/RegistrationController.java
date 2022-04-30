@@ -20,14 +20,18 @@ public class RegistrationController implements Initializable {
     @FXML private Label registrationLabelWrong;
     @FXML private Hyperlink registrationHyperlink;
 
+    private final int ACCEPTABLE_PASSWORD_LENGTH = 8;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // Registration new user
         registrationButtonSignUp.setOnAction(event -> {
 
-            if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
-                registrationLabelWrong.setText("passwords don't match");
+            if(registrationPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH && registrationConfirmPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH) {
+                registrationLabelWrong.setText("Short password"); // Check password length
+            } else if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
+                registrationLabelWrong.setText("passwords don't match"); // Check password match
             } else if (!registrationTextUsername.getText().trim().isEmpty() && !registrationPassword.getText().isEmpty() && !registrationPassword.getText().isEmpty()) {
                 try {
                     DBUtils.signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
