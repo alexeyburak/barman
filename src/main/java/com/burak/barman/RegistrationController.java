@@ -1,6 +1,7 @@
 package com.burak.barman;
 
 import com.burak.barman.utils.GetHash;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -9,6 +10,7 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
+
 public class RegistrationController implements Initializable {
 
     @FXML private TextField registrationTextUsername;
@@ -16,6 +18,7 @@ public class RegistrationController implements Initializable {
     @FXML private PasswordField registrationConfirmPassword;
     @FXML private Button registrationButtonSignUp;
     @FXML private Label registrationLabelWrong;
+    @FXML private Hyperlink registrationHyperlink;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,5 +37,11 @@ public class RegistrationController implements Initializable {
                 registrationLabelWrong.setText("Fill all");
             }
         });
+
+        registrationHyperlink.setOnAction(event -> {
+
+        });
+
+
     }
 }
