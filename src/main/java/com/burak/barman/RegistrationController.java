@@ -23,6 +23,7 @@ public class RegistrationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Registration new user
         registrationButtonSignUp.setOnAction(event -> {
 
             if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
@@ -38,6 +39,7 @@ public class RegistrationController implements Initializable {
             }
         });
 
+        // Go to privacy police
         registrationHyperlink.setOnAction(event -> {
 
         });
