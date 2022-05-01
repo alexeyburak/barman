@@ -1,0 +1,70 @@
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+
+}
+
+.label-small {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12;
+    -fx-text-fill: gray;
+
+}
+
+.pane {
+    -fx-background-color: linear-gradient(blue, black);
+}
+
+.label-wrong {
+    -fx-font-size: 15;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #861a1a;
+}
+
+.text {
+    -fx-text-fill: gray;
+    -fx-font-family: "Arial";
+    -fx-background-color: black;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-prompt-text-fill: gray;
+
+}
+
+.text:hover {
+    -fx-border-color: #4781ff;
+}
+
+.button {
+    -fx-text-fill: black;
+    -fx-font-family: "Arial";
+    -fx-background-color: gray;
+    -fx-border-radius: 50;
+    -fx-background-radius: 20;
+}
+
+.button-small {
+    -fx-text-fill: #4781ff;
+    -fx-background-color: black;
+    -fx-border-radius: 50;
+    -fx-background-radius: 20;
+}
+
+.check-box {
+    -fx-text-fill: red;
+    -fx-background-radius: red;
+
+}
+
+.hyperlink {
+    -fx-background-color: black;
+    -fx-text-fill: #4781ff;
+    -fx-border-color: black;
+}
+
+/* mouse over link */
+.hyperlink:hover {
+    -fx-text-fill: blue;
+}

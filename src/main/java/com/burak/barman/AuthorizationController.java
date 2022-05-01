@@ -48,6 +48,8 @@ public class AuthorizationController implements Initializable {
                 }
             } else {
                 authorizationLabelWrong.setText("Fill ALL!");
+                authorizationShowPassword.clear();
+                authorizationTextPassword.clear();
             }
 
         });
