@@ -1,5 +1,10 @@
 package com.burak.barman;
 
+/*
+ * Barman
+ * Created by Alexey Burak
+ */
+
 import com.burak.barman.utils.GetHash;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

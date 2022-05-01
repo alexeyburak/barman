@@ -1,5 +1,10 @@
 package com.burak.barman.utils;
 
+/*
+ * Barman
+ * Created by Alexey Burak
+ */
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

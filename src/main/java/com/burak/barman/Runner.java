@@ -1,5 +1,10 @@
 package com.burak.barman;
 
+/*
+ * Barman
+ * Created by Alexey Burak
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

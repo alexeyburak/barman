@@ -1,5 +1,10 @@
 package com.burak.barman;
 
+/*
+ * Barman
+ * Created by Alexey Burak
+ */
+
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -108,7 +113,7 @@ public class DBUtils {
 
             if (!resultSet.isBeforeFirst()) {
                 labelWrong.setText("There is no account");
-                passwordField.setText("");
+                passwordField.clear();
             } else {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
@@ -116,7 +121,7 @@ public class DBUtils {
                         changeScene(event, "mainStage.fxml");
                     } else {
                         labelWrong.setText("Pass didnt match");
-                        passwordField.setText("");
+                        passwordField.clear();
                     }
                 }
 
