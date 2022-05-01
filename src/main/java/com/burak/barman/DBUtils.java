@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class DBUtils {
 
@@ -169,6 +170,12 @@ public class DBUtils {
                     passwordField.setVisible(true);
                     textField.setVisible(false);
                 });
+    }
+
+    // Checking whether a string is only a number
+    public static boolean isNumeric(String string) {
+        String regex = "[0-9]+[.]?[0-9]*";
+        return Pattern.matches(regex, string);
     }
 
 }

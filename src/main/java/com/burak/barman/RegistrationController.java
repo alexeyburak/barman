@@ -15,6 +15,10 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
+import static com.burak.barman.DBUtils.isNumeric;
+import static com.burak.barman.DBUtils.signUpUser;
+
+
 
 public class RegistrationController implements Initializable {
 
@@ -25,25 +29,32 @@ public class RegistrationController implements Initializable {
     @FXML private Label registrationLabelWrong;
     @FXML private Hyperlink registrationHyperlink;
 
+    // Minimum password length
     private final int ACCEPTABLE_PASSWORD_LENGTH = 8;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // Registration new user
+
+        // The password implies a string of more than 8 characters, which are not just numbers
         registrationButtonSignUp.setOnAction(event -> {
 
             if(registrationPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH && registrationConfirmPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH) {
                 registrationLabelWrong.setText("Short password"); // Check password length
             } else if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
                 registrationLabelWrong.setText("passwords don't match"); // Check password match
+            } else if (isNumeric(registrationPassword.getText())) { // Checking whether a password is only a number
+                registrationLabelWrong.setText("the password must contain at least one letter");
             } else if (!registrationTextUsername.getText().trim().isEmpty() && !registrationPassword.getText().isEmpty() && !registrationPassword.getText().isEmpty()) {
                 try {
-                    DBUtils.signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
+                    // Check mistakes with Database
+                    signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
             } else {
+                // If not all fields are filled in
                 registrationLabelWrong.setText("Fill all");
             }
         });

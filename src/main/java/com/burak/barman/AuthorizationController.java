@@ -14,6 +14,10 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
+import static com.burak.barman.DBUtils.logInUser;
+import static com.burak.barman.DBUtils.changeScene;
+import static com.burak.barman.DBUtils.showPassword;
+
 public class AuthorizationController implements Initializable {
 
     @FXML private TextField authorizationTextUsername;
@@ -32,10 +36,12 @@ public class AuthorizationController implements Initializable {
         authorizationButtonAccept.setOnAction(event -> {
             if (!authorizationTextUsername.getText().isEmpty() && !authorizationTextPassword.getText().isEmpty()) {
                 try {
+                    // If user sees password being entered
                     if (authorizationCheckBox.isSelected()) {
-                        DBUtils.logInUser(event, authorizationTextUsername.getText(), String.valueOf(GetHash.getHash(authorizationShowPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
+                        logInUser(event, authorizationTextUsername.getText(), String.valueOf(GetHash.getHash(authorizationShowPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
                     } else {
-                        DBUtils.logInUser(event, authorizationTextUsername.getText(), String.valueOf(GetHash.getHash(authorizationTextPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
+                        // If user does not see password being entered
+                        logInUser(event, authorizationTextUsername.getText(), String.valueOf(GetHash.getHash(authorizationTextPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
                     }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
@@ -47,13 +53,13 @@ public class AuthorizationController implements Initializable {
         });
 
         // Go back to mainStage
-        authorizationButtonBack.setOnAction(event -> DBUtils.changeScene(event, "mainStage.fxml"));
+        authorizationButtonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
 
         // Go to registration
-        authorizationButtonNewUser.setOnAction(event -> DBUtils.changeScene(event, "registration.fxml"));
+        authorizationButtonNewUser.setOnAction(event -> changeScene(event, "registration.fxml"));
 
         // Show password if CheckBox is selected
-        authorizationCheckBox.setOnAction(event -> DBUtils.showPassword(authorizationCheckBox, authorizationShowPassword, authorizationTextPassword));
+        authorizationCheckBox.setOnAction(event -> showPassword(authorizationCheckBox, authorizationShowPassword, authorizationTextPassword));
 
     }
 
