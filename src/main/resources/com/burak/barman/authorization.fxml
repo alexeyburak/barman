@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.AuthorizationController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.AuthorizationController">
+   <children>
+      <Button fx:id="authorizationButtonAccept" layoutX="40.0" layoutY="297.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="274.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Login" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+      <Label fx:id="authorizationLabelWrong" alignment="CENTER" layoutX="40.0" layoutY="259.0" prefHeight="9.0" prefWidth="274.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#861a1a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="57.0" prefHeight="26.0" prefWidth="223.0" stylesheets="@style/authorization.css" text="Login to Barman" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="57.0">
+         <font>
+            <Font name="Verdana" size="25.0" />
+         </font>
+      </Label>
+      <HBox layoutX="40.0" layoutY="359.0" prefHeight="27.0" prefWidth="274.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+         <children>
+            <Label prefHeight="26.0" prefWidth="91.0" styleClass="label-small" stylesheets="@style/authorization.css" text="Not an account?">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin>
+            </Label>
+            <Button fx:id="authorizationButtonNewUser" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" styleClass="btnBack" stylesheets="@style/authorization.css" text="Create">
+               <HBox.margin>
+                  <Insets left="-5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <CheckBox fx:id="authorizationCheckBox" layoutX="299.0" layoutY="187.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="18.0" stylesheets="@style/authorization.css" AnchorPane.rightAnchor="37.0" />
+      <TextField fx:id="authorizationTextUsername" layoutX="43.0" layoutY="128.0" prefHeight="30.0" prefWidth="249.0" promptText="Username" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="62.0" />
+      <TextField fx:id="authorizationShowPassword" layoutX="43.0" layoutY="183.0" prefHeight="30.0" prefWidth="231.0" promptText="Password" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="181.0" />
+      <PasswordField fx:id="authorizationTextPassword" layoutX="43.0" layoutY="181.0" prefHeight="30.0" prefWidth="223.0" promptText="Password" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="181.0" />
+   </children>
+</AnchorPane>

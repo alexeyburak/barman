@@ -7,6 +7,7 @@ module com.burak.barman {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.burak.barman to javafx.fxml;
     exports com.burak.barman;
