@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import static com.burak.barman.DBUtils.logInUser;
 import static com.burak.barman.DBUtils.changeScene;
 import static com.burak.barman.DBUtils.showPassword;
+import static com.burak.barman.DBUtils.checkAge;
 
 public class AuthorizationController implements Initializable {
 
@@ -58,7 +59,11 @@ public class AuthorizationController implements Initializable {
         authorizationButtonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
 
         // Go to registration
-        authorizationButtonNewUser.setOnAction(event -> changeScene(event, "registration.fxml"));
+        authorizationButtonNewUser.setOnAction(event -> {
+            if (checkAge()) {
+                changeScene(event, "registration.fxml");
+            }
+        });
 
         // Show password if CheckBox is selected
         authorizationCheckBox.setOnAction(event -> showPassword(authorizationCheckBox, authorizationShowPassword, authorizationTextPassword));

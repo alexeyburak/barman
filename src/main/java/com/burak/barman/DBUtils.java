@@ -11,15 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class DBUtils {
@@ -176,6 +174,22 @@ public class DBUtils {
     public static boolean isNumeric(String string) {
         String regex = "[0-9]+[.]?[0-9]*";
         return Pattern.matches(regex, string);
+    }
+
+    public static boolean checkAge() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm your age");
+        alert.setHeaderText("Barman needs to be over the age of 18");
+        alert.setContentText("By clicking OK, you confirm that your age is more than 18 years");
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == ButtonType.OK) {
+            return true;
+        } else if (option.get() == ButtonType.CANCEL) {
+            return false;
+        } else {
+            return false;
+        }
     }
 
 }

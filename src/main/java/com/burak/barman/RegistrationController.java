@@ -72,7 +72,5 @@ public class RegistrationController implements Initializable {
         registrationHyperlink.setOnAction(event -> {
 
         });
-
-
     }
 }
