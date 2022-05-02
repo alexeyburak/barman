@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 import static com.burak.barman.DBUtils.isNumeric;
 import static com.burak.barman.DBUtils.signUpUser;
+import static com.burak.barman.DBUtils.changeScene;
 
 
 
@@ -28,6 +29,7 @@ public class RegistrationController implements Initializable {
     @FXML private Button registrationButtonSignUp;
     @FXML private Label registrationLabelWrong;
     @FXML private Hyperlink registrationHyperlink;
+    @FXML private Button registrationButtonBack;
 
     // Minimum password length
     private final int ACCEPTABLE_PASSWORD_LENGTH = 8;
@@ -45,7 +47,10 @@ public class RegistrationController implements Initializable {
         // The password implies a string of more than 8 characters, which are not just numbers
         registrationButtonSignUp.setOnAction(event -> {
 
-            if(registrationPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH && registrationConfirmPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH) {
+            if (registrationPassword.getText().isEmpty() && registrationTextUsername.getText().isEmpty()) {
+                registrationLabelWrong.setText("Fill all"); // If not all fields are filled in
+                clearFields();
+            } else if(registrationPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH && registrationConfirmPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH) {
                 registrationLabelWrong.setText("Short password"); // Check password length
                 clearFields();
             } else if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
@@ -61,10 +66,6 @@ public class RegistrationController implements Initializable {
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-            } else {
-                // If not all fields are filled in
-                registrationLabelWrong.setText("Fill all");
-                clearFields();
             }
         });
 
@@ -72,5 +73,9 @@ public class RegistrationController implements Initializable {
         registrationHyperlink.setOnAction(event -> {
 
         });
+
+        // Go back to authorization
+        registrationButtonBack.setOnAction(event -> changeScene(event, "authorization.fxml"));
+
     }
 }

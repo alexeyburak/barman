@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.AuthorizationController">
    <children>
-      <Button fx:id="authorizationButtonAccept" layoutX="40.0" layoutY="297.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="274.0" stylesheets="@style/authorization.css" text="Login" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="authorizationButtonAccept" layoutX="40.0" layoutY="297.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="274.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Login" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
       <Label fx:id="authorizationLabelWrong" alignment="CENTER" layoutX="40.0" layoutY="259.0" prefHeight="9.0" prefWidth="274.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#861a1a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="8.0" />
@@ -25,19 +25,17 @@
       </Label>
       <HBox layoutX="40.0" layoutY="359.0" prefHeight="27.0" prefWidth="274.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <children>
-            <Label prefHeight="26.0" prefWidth="115.0" styleClass="label-small" stylesheets="@style/authorization.css" text="Not an account?">
+            <Label prefHeight="26.0" prefWidth="91.0" styleClass="label-small" stylesheets="@style/authorization.css" text="Not an account?">
                <font>
                   <Font size="1.0" />
                </font>
-            </Label>
-            <Button fx:id="authorizationButtonNewUser" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" styleClass="button-small" stylesheets="@style/authorization.css" text="Create">
                <HBox.margin>
-                  <Insets left="2.0" />
+                  <Insets left="80.0" />
                </HBox.margin>
-            </Button>
-            <Button fx:id="authorizationButtonBack" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" styleClass="button-small" stylesheets="@style/authorization.css" text="Back">
+            </Label>
+            <Button fx:id="authorizationButtonNewUser" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" styleClass="btnBack" stylesheets="@style/authorization.css" text="Create">
                <HBox.margin>
-                  <Insets left="60.0" />
+                  <Insets left="-5.0" />
                </HBox.margin>
             </Button>
          </children>

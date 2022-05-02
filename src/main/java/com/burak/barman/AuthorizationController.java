@@ -25,7 +25,6 @@ public class AuthorizationController implements Initializable {
     @FXML private PasswordField authorizationTextPassword;
     @FXML private Button authorizationButtonAccept;
     @FXML private Button authorizationButtonNewUser;
-    @FXML private Button authorizationButtonBack;
     @FXML private Label authorizationLabelWrong;
     @FXML private TextField authorizationShowPassword;
     @FXML private CheckBox authorizationCheckBox;
@@ -54,9 +53,6 @@ public class AuthorizationController implements Initializable {
             }
 
         });
-
-        // Go back to mainStage
-        authorizationButtonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
 
         // Go to registration
         authorizationButtonNewUser.setOnAction(event -> {

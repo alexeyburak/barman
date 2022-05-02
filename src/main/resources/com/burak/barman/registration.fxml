@@ -15,7 +15,7 @@
       <TextField fx:id="registrationTextUsername" layoutX="40.0" layoutY="125.0" promptText="Username" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="125.0" />
       <PasswordField fx:id="registrationPassword" layoutX="40.0" layoutY="187.0" promptText="Password" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="175.0" />
       <PasswordField fx:id="registrationConfirmPassword" layoutX="69.0" layoutY="263.0" promptText="Confirm password" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="225.0" />
-      <Button fx:id="registrationButtonSignUp" layoutX="40.0" layoutY="303.0" mnemonicParsing="false" text="SignUp" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="303.0" />
+      <Button fx:id="registrationButtonSignUp" layoutX="40.0" layoutY="303.0" mnemonicParsing="false" styleClass="buttonSign" stylesheets="@style/authorization.css" text="SignUp" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="303.0" />
       <Label fx:id="registrationLabelWrong" alignment="TOP_CENTER" layoutX="129.0" layoutY="264.0" prefHeight="24.0" prefWidth="80.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textFill="#eb0303" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="19.0" />
@@ -23,12 +23,26 @@
       </Label>
       <HBox layoutX="51.0" layoutY="342.0" prefHeight="36.0" prefWidth="274.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <children>
-            <Label prefHeight="24.0" prefWidth="188.0" styleClass="label-small" stylesheets="@style/authorization.css" text="By registering, you agree with the " />
-            <Hyperlink fx:id="registrationHyperlink" prefHeight="23.0" prefWidth="98.0" stylesheets="@style/authorization.css" text="Privacy Policy">
+            <Label prefHeight="39.0" prefWidth="185.0" styleClass="label-small" stylesheets="@style/authorization.css" text="By registering, you agree &#10;with the ">
                <HBox.margin>
-                  <Insets left="-7.0" />
+                  <Insets bottom="-4.0" top="-3.0" />
                </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Hyperlink fx:id="registrationHyperlink" prefHeight="16.0" prefWidth="90.0" stylesheets="@style/authorization.css" text="Privacy Policy">
+               <HBox.margin>
+                  <Insets bottom="-15.0" left="-144.0" top="14.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="7.0" />
+               </font>
             </Hyperlink>
+            <Button fx:id="registrationButtonBack" mnemonicParsing="false" styleClass="btnBack" stylesheets="@style/authorization.css" text="Back">
+               <HBox.margin>
+                  <Insets left="97.0" top="5.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Label layoutX="54.0" layoutY="43.0" stylesheets="@style/authorization.css" text="Join Barman!" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="57.0" />
