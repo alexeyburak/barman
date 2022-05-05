@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.MainStageController">
    <children>
       <BorderPane layoutX="288.0" layoutY="134.0" prefHeight="266.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -20,7 +19,7 @@
                   <Button mnemonicParsing="false" text="My bar" />
                   <Button mnemonicParsing="false" text="Ingridients" />
                   <Button mnemonicParsing="false" text="Constructor" />
-                  <ComboBox prefHeight="26.0" prefWidth="98.0" promptText="Account" />
+                  <ComboBox fx:id="comboBoxAccount" prefHeight="26.0" prefWidth="98.0" promptText="Account" />
                </children>
             </HBox>
          </top>

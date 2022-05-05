@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 import static com.burak.barman.DBUtils.logInUser;
 import static com.burak.barman.DBUtils.changeScene;
 import static com.burak.barman.DBUtils.showPassword;
-import static com.burak.barman.DBUtils.checkAge;
+import static com.burak.barman.DBUtils.showAlertConfirmation;
 
 public class AuthorizationController implements Initializable {
 
@@ -56,7 +56,10 @@ public class AuthorizationController implements Initializable {
 
         // Go to registration
         authorizationButtonNewUser.setOnAction(event -> {
-            if (checkAge()) {
+            String title = "Confirm your age";
+            String headerText = "Barman needs to be over the age of 18";
+            String contextText = "By clicking OK, you confirm that your age is more than 18 years";
+            if (showAlertConfirmation(title, headerText, contextText)) {
                 changeScene(event, "registration.fxml", 0 ,null);
             }
         });

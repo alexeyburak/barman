@@ -5,6 +5,7 @@ package com.burak.barman;
  * Created by Alexey Burak
  */
 
+import com.burak.barman.models.User;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ public class DBUtils {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/barman";
     private static final String DATABASE_USER = "root";
     private static final String DATABASE_PASSWORD = "alexeyburak";
+    static User user = new User();
 
     // Changing Scenes
     public static void changeScene(ActionEvent event, String fxmlFile, int role, String username) {
@@ -70,6 +72,7 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("signUpUser error");
         } finally {
             if (resultSet != null) {
                 try {
@@ -102,6 +105,88 @@ public class DBUtils {
 
         }
     }
+//!!!!!!!!!!!!!!!!!!!!
+    private static void changePassword(String newPassword) {
+        Connection connection= null;
+        PreparedStatement prepareStatement= null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            prepareStatement = connection.prepareStatement("UPDATE users SET password = ? WHERE username = ?");
+            prepareStatement.setString(1, newPassword);
+            prepareStatement.setString(2, user.getUsername());
+
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(user.getUsername());
+        } finally {
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void checkPassword(String oldPassword, String newPassword, Label labelWrong) {
+        Connection connection = null;
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            prepareStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            prepareStatement.setString(1, user.getUsername());
+            resultSet = prepareStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String retrievedPassword = resultSet.getString("password");
+                if (retrievedPassword.equals(oldPassword)) {
+                    changePassword(newPassword);
+                } else {
+                    labelWrong.setText("you entered the wrong password");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(user.getUsername());
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     // Login users
     public static void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
@@ -121,6 +206,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
+                        user.setUsername(username);
                         changeScene(event, "mainStage.fxml", 1, username);
                     } else {
                         labelWrong.setText("Pass didnt match");
@@ -132,6 +218,7 @@ public class DBUtils {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("logInUser error");
         } finally {
             if (resultSet != null) {
                 try {
@@ -180,11 +267,11 @@ public class DBUtils {
         return Pattern.matches(regex, string);
     }
 
-    public static boolean checkAge() {
+    public static boolean showAlertConfirmation(String title, String headerText, String contextText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm your age");
-        alert.setHeaderText("Barman needs to be over the age of 18");
-        alert.setContentText("By clicking OK, you confirm that your age is more than 18 years");
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contextText);
         Optional<ButtonType> option = alert.showAndWait();
 
         if (option.get() == ButtonType.OK) {
