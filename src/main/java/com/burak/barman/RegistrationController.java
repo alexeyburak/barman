@@ -15,9 +15,9 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import static com.burak.barman.DBUtils.isNumeric;
 import static com.burak.barman.DBUtils.signUpUser;
 import static com.burak.barman.DBUtils.changeScene;
+import static com.burak.barman.utils.CheckPassword.checkInput;
 
 
 
@@ -31,8 +31,6 @@ public class RegistrationController implements Initializable {
     @FXML private Hyperlink registrationHyperlink;
     @FXML private Button registrationButtonBack;
 
-    // Minimum password length
-    private final int ACCEPTABLE_PASSWORD_LENGTH = 8;
 
     private void clearFields() {
         registrationPassword.clear();
@@ -47,17 +45,7 @@ public class RegistrationController implements Initializable {
         // The password implies a string of more than 8 characters, which are not just numbers
         registrationButtonSignUp.setOnAction(event -> {
 
-            if (registrationPassword.getText().isEmpty() && registrationTextUsername.getText().isEmpty()) {
-                registrationLabelWrong.setText("Fill all"); // If not all fields are filled in
-                clearFields();
-            } else if(registrationPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH && registrationConfirmPassword.getText().length() < ACCEPTABLE_PASSWORD_LENGTH) {
-                registrationLabelWrong.setText("Short password"); // Check password length
-                clearFields();
-            } else if (!registrationPassword.getText().equals(registrationConfirmPassword.getText())) {
-                registrationLabelWrong.setText("passwords don't match"); // Check password match
-                clearFields();
-            } else if (isNumeric(registrationPassword.getText())) { // Checking whether a password is only a number
-                registrationLabelWrong.setText("the password must contain at least one letter");
+            if (!checkInput(registrationPassword.getText(), registrationConfirmPassword.getText(), registrationTextUsername.getText(), registrationLabelWrong)) {
                 clearFields();
             } else if (!registrationTextUsername.getText().trim().isEmpty() && !registrationPassword.getText().isEmpty() && !registrationPassword.getText().isEmpty()) {
                 try {
@@ -75,7 +63,7 @@ public class RegistrationController implements Initializable {
         });
 
         // Go back to authorization
-        registrationButtonBack.setOnAction(event -> changeScene(event, "authorization.fxml"));
+        registrationButtonBack.setOnAction(event -> changeScene(event, "authorization.fxml", 0, null));
 
     }
 }

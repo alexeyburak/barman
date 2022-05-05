@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class MainStageController implements Initializable {
 
-    @FXML private Label mainStageLabel;
+    @FXML private Label labelSayHi;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -22,6 +22,8 @@ public class MainStageController implements Initializable {
     }
 
     public void setUserInformation(String username) {
-        mainStageLabel.setText("Hello, " + username);
+        if (labelSayHi != null) {
+            labelSayHi.setText(username + "HI");
+        }
     }
 }

@@ -27,13 +27,17 @@ public class DBUtils {
     private static final String DATABASE_PASSWORD = "alexeyburak";
 
     // Changing Scenes
-    public static void changeScene(ActionEvent event, String fxmlFile) {
+    public static void changeScene(ActionEvent event, String fxmlFile, int role, String username) {
+        FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
         Parent root = null;
-
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(DBUtils.class.getResource(fxmlFile)));
+            root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (role == 1) {
+            MainStageController st = loader.getController();
+            st.setUserInformation(username);
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -62,7 +66,7 @@ public class DBUtils {
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
 
-                changeScene(event, "mainStage.fxml");
+                changeScene(event, "mainStage.fxml", 0 , null);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +104,7 @@ public class DBUtils {
     }
 
     // Login users
-    public static  void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
+    public static void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
         Connection connection = null;
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
@@ -117,7 +121,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changeScene(event, "mainStage.fxml");
+                        changeScene(event, "mainStage.fxml", 1, username);
                     } else {
                         labelWrong.setText("Pass didnt match");
                         passwordField.clear();

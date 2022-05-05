@@ -57,7 +57,7 @@ public class AuthorizationController implements Initializable {
         // Go to registration
         authorizationButtonNewUser.setOnAction(event -> {
             if (checkAge()) {
-                changeScene(event, "registration.fxml");
+                changeScene(event, "registration.fxml", 0 ,null);
             }
         });
 
