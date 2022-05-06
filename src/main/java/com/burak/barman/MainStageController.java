@@ -12,46 +12,64 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.DBUtils.changeScene;
 import static com.burak.barman.DBUtils.showAlertConfirmation;
+import static com.burak.barman.DBUtils.user;
+import static com.burak.barman.utils.Greeting.getRandom;
 
 
 public class MainStageController implements Initializable {
 
+    @FXML private Label labelSayHiName;
     @FXML private Label labelSayHi;
     @FXML private ComboBox<String> comboBoxAccount;
-
-
+    Collection<String> greeting = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add items tp box "Account"
         comboBoxAccount.getItems().addAll(
                 "Change password",
-                "Sign Out"
+                "Change username",
+                "SignOut"
         );
 
+        //  Greeting variants
+        greeting.add("Swell again today?");
+        greeting.add("Remember the youth?");
+        greeting.add("You look great, shall we hang out?");
+        greeting.add("Glad to see you again");
+
+        // Box "Account" action
         comboBoxAccount.setOnAction(this::boxChoose);
 
+        // Print username
+        labelSayHiName.setText(user.getUsername());
+
+        // Print greeting
+        labelSayHi.setText(getRandom(greeting));
+
     }
 
-    public void setUserInformation(String username) {
-        if (labelSayHi != null) {
-            labelSayHi.setText(username + "HI");
-        }
-    }
-
+    // selections in "Account"
     private void boxChoose(ActionEvent event) {
         switch(comboBoxAccount.getValue()) {
             case "Change password":
-                // Got to changing password
-                changeScene(event, "changePassword.fxml", 0, null);
+                // Go to changing password
+                changeScene(event, "changePassword.fxml");
                 break;
-            case "LogOut":
+            case "Change username":
+                //Go to changing username
+                changeScene(event, "changeUsername.fxml");
+                break;
+            case "SignOut":
                 // Alert to confirm LogOut
                 if (showAlertConfirmation("Confirm the decision", "Only authorized users can use Barman", null)) {
-                    changeScene(event, "authorization.fxml", 0, null);
+                    changeScene(event, "authorization.fxml");
                 }
                 break;
         }

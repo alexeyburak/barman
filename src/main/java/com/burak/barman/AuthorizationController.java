@@ -60,7 +60,7 @@ public class AuthorizationController implements Initializable {
             String headerText = "Barman needs to be over the age of 18";
             String contextText = "By clicking OK, you confirm that your age is more than 18 years";
             if (showAlertConfirmation(title, headerText, contextText)) {
-                changeScene(event, "registration.fxml", 0 ,null);
+                changeScene(event, "registration.fxml");
             }
         });
 

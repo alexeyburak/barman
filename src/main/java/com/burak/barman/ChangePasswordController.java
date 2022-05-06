@@ -37,7 +37,7 @@ public class ChangePasswordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml", 0, null));
+        buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
 
         buttonSafe.setOnAction(event -> {
             if (!CheckPassword.checkInput(newPassword.getText(), confirmNewPassword.getText(), null, labelWrong)) {
@@ -45,6 +45,7 @@ public class ChangePasswordController implements Initializable {
             } else {
                 try {
                     checkPassword(String.valueOf(getHash(oldPassword.getText())), String.valueOf(getHash(newPassword.getText())), labelWrong);
+                    labelWrong.setText("password has changed");
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }

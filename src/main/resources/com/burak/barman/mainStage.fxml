@@ -29,11 +29,12 @@
          <left>
             <VBox prefHeight="492.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="labelSayHi">
+                  <Label fx:id="labelSayHiName">
                      <font>
                         <Font size="50.0" />
                      </font>
                   </Label>
+                  <Label fx:id="labelSayHi" text="Label" />
                </children>
             </VBox>
          </left>

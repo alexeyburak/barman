@@ -63,7 +63,7 @@ public class RegistrationController implements Initializable {
         });
 
         // Go back to authorization
-        registrationButtonBack.setOnAction(event -> changeScene(event, "authorization.fxml", 0, null));
+        registrationButtonBack.setOnAction(event -> changeScene(event, "authorization.fxml"));
 
     }
 }

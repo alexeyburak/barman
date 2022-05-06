@@ -29,7 +29,7 @@ public class DBUtils {
     static User user = new User();
 
     // Changing Scenes
-    public static void changeScene(ActionEvent event, String fxmlFile, int role, String username) {
+    public static void changeScene(ActionEvent event, String fxmlFile) {
         FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
         Parent root = null;
         try {
@@ -37,11 +37,6 @@ public class DBUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (role == 1) {
-            MainStageController st = loader.getController();
-            st.setUserInformation(username);
-        }
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(Objects.requireNonNull(root)));
         stage.show();
@@ -68,7 +63,7 @@ public class DBUtils {
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
 
-                changeScene(event, "mainStage.fxml", 0 , null);
+                changeScene(event, "mainStage.fxml");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,7 +100,27 @@ public class DBUtils {
 
         }
     }
-//!!!!!!!!!!!!!!!!!!!!
+
+    // Change users username
+    public static void changeUsername(String newUsername) {
+        Connection connection;
+        PreparedStatement prepareStatement;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            prepareStatement = connection.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
+            prepareStatement.setString(1, newUsername);
+            prepareStatement.setString(2, user.getUsername());
+
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("changeUsername error");
+        }
+    }
+
+    // Change users password
     private static void changePassword(String newPassword) {
         Connection connection= null;
         PreparedStatement prepareStatement= null;
@@ -120,7 +135,7 @@ public class DBUtils {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(user.getUsername());
+            System.out.println("changePassword error");
         } finally {
             if (prepareStatement != null) {
                 try {
@@ -140,6 +155,7 @@ public class DBUtils {
         }
     }
 
+    // Check old password in Data
     public static void checkPassword(String oldPassword, String newPassword, Label labelWrong) {
         Connection connection = null;
         PreparedStatement prepareStatement = null;
@@ -161,7 +177,7 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(user.getUsername());
+            System.out.println("checkPassword error");
         } finally {
             if (resultSet != null) {
                 try {
@@ -207,7 +223,8 @@ public class DBUtils {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
                         user.setUsername(username);
-                        changeScene(event, "mainStage.fxml", 1, username);
+                        System.out.println(user.toString() + " logIn system");
+                        changeScene(event, "mainStage.fxml");
                     } else {
                         labelWrong.setText("Pass didnt match");
                         passwordField.clear();
