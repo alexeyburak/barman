@@ -22,9 +22,10 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.DBUtils.changeScene;
-import static com.burak.barman.DBUtils.showAlertConfirmation;
+import static com.burak.barman.utils.Tools.showAlertConfirmation;
 import static com.burak.barman.DBUtils.user;
 import static com.burak.barman.utils.Greeting.getRandom;
+import static com.burak.barman.utils.Tools.writeInListFromFile;
 
 
 public class MainStageController implements Initializable {
@@ -33,6 +34,7 @@ public class MainStageController implements Initializable {
     @FXML private Label labelSayHi;
     @FXML private Button buttonGitHub;
     @FXML private ComboBox<String> comboBoxAccount;
+
     Collection<String> greeting = new ArrayList<>();
 
     @Override
@@ -44,11 +46,8 @@ public class MainStageController implements Initializable {
                 "SignOut"
         );
 
-        //  Greeting variants
-        greeting.add("Swell again today?");
-        greeting.add("Remember the youth?");
-        greeting.add("You look great, shall we hang out?");
-        greeting.add("Glad to see you again");
+        //  Feeling collection for greeting
+        writeInListFromFile("./src/main/resources/com/burak/barman/files/greeting.txt", greeting);
 
         // Box "Account" action
         comboBoxAccount.setOnAction(this::boxChoose);

@@ -2,7 +2,7 @@ package com.burak.barman.utils;
 
 import javafx.scene.control.Label;
 
-import static com.burak.barman.DBUtils.isNumeric;
+import java.util.regex.Pattern;
 
 /**
  * Barman
@@ -31,5 +31,11 @@ public class CheckPassword {
         } else {
             return true;
         }
+    }
+
+    // Checking whether a string is only a number
+    public static boolean isNumeric(String string) {
+        String regex = "[0-9]+[.]?[0-9]*";
+        return Pattern.matches(regex, string);
     }
 }

@@ -6,7 +6,6 @@ package com.burak.barman;
  */
 
 import com.burak.barman.models.User;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,8 +17,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.regex.Pattern;
 
 public class DBUtils {
 
@@ -279,43 +276,4 @@ public class DBUtils {
             }
         }
     }
-
-    // Change introduced password visibility
-    public static void showPassword (CheckBox checkBox, TextField textField, PasswordField passwordField) {
-        checkBox.selectedProperty()
-                .addListener((ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
-                    if (checkBox.isSelected()) {
-                        textField.setText(passwordField.getText());
-                        textField.setVisible(true);
-                        passwordField.setVisible(false);
-                        return;
-                    }
-                    passwordField.setText(textField.getText());
-                    passwordField.setVisible(true);
-                    textField.setVisible(false);
-                });
-    }
-
-    // Checking whether a string is only a number
-    public static boolean isNumeric(String string) {
-        String regex = "[0-9]+[.]?[0-9]*";
-        return Pattern.matches(regex, string);
-    }
-
-    public static boolean showAlertConfirmation(String title, String headerText, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contextText);
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get() == ButtonType.OK) {
-            return true;
-        } else if (option.get() == ButtonType.CANCEL) {
-            return false;
-        } else {
-            return false;
-        }
-    }
-
 }

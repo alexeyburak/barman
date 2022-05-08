@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 
 import static com.burak.barman.DBUtils.logInUser;
 import static com.burak.barman.DBUtils.changeScene;
-import static com.burak.barman.DBUtils.showPassword;
-import static com.burak.barman.DBUtils.showAlertConfirmation;
+import static com.burak.barman.utils.Tools.showPassword;
+import static com.burak.barman.utils.Tools.showAlertConfirmation;
 
 public class AuthorizationController implements Initializable {
 
