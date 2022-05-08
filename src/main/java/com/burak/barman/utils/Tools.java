@@ -4,7 +4,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -65,4 +67,10 @@ public class Tools {
         }
     }
 
+    // Get a day in a string format
+    public static String getDay(){
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE");
+        Date date = new Date();
+        return formatter.format(date);
+    }
 }
