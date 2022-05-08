@@ -8,9 +8,14 @@ package com.burak.barman;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +31,7 @@ public class MainStageController implements Initializable {
 
     @FXML private Label labelSayHiName;
     @FXML private Label labelSayHi;
+    @FXML private Button buttonGitHub;
     @FXML private ComboBox<String> comboBoxAccount;
     Collection<String> greeting = new ArrayList<>();
 
@@ -46,6 +52,16 @@ public class MainStageController implements Initializable {
 
         // Box "Account" action
         comboBoxAccount.setOnAction(this::boxChoose);
+
+        // Go to project GitHub
+        buttonGitHub.setOnAction(event -> {
+            String gitHubLink = "https://github.com/alexeyburak/barman";
+            try {
+                Desktop.getDesktop().browse(new URI(gitHubLink));
+            }  catch (URISyntaxException | IOException e) {
+                System.out.println("Go to GitHub error " + e);
+            }
+        });
 
         // Print username
         labelSayHiName.setText(user.getUsername());

@@ -33,8 +33,7 @@ public class ChangeUsernameController implements Initializable {
         labelOldUsername.setText("your username is " + user.getUsername());
 
         buttonSafe.setOnAction(event -> {
-            changeUsername(newUsername.getText());
-            labelWrong.setText("username has changed");
+            changeUsername(newUsername.getText(), labelWrong);
         });
 
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));

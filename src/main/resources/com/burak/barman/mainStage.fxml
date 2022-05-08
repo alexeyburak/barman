@@ -24,7 +24,13 @@
             </HBox>
          </top>
          <bottom>
-            <HBox prefHeight="46.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+            <HBox prefHeight="46.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="contact us " />
+                  <Label text="email" />
+                  <Label text="Works on Open Source" />
+                  <Button fx:id="buttonGitHub" mnemonicParsing="false" text="GitHub" />
+               </children></HBox>
          </bottom>
          <left>
             <VBox prefHeight="492.0" prefWidth="250.0" BorderPane.alignment="CENTER">

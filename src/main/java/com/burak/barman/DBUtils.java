@@ -102,21 +102,39 @@ public class DBUtils {
     }
 
     // Change users username
-    public static void changeUsername(String newUsername) {
-        Connection connection;
-        PreparedStatement prepareStatement;
+    public static void changeUsername(String newUsername, Label labelWrong) {
+        Connection connection = null;
+        PreparedStatement prepareStatement = null;
 
-        try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            prepareStatement = connection.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
-            prepareStatement.setString(1, newUsername);
-            prepareStatement.setString(2, user.getUsername());
-
-            prepareStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("changeUsername error");
+        if (!newUsername.isEmpty()) {
+            try {
+                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+                prepareStatement = connection.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
+                prepareStatement.setString(1, newUsername);
+                prepareStatement.setString(2, user.getUsername());
+                user.setUsername(newUsername);
+                prepareStatement.executeUpdate();
+                labelWrong.setText("username has changed");
+            } catch (SQLException e) {
+                System.out.println("changeUsername error" + e);
+            } finally {
+                if (prepareStatement != null) {
+                    try {
+                        prepareStatement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            labelWrong.setText("Fill!!");
         }
     }
 
