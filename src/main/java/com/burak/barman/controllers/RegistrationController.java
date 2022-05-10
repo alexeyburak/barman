@@ -1,4 +1,4 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
 /*
  * Barman
@@ -15,8 +15,8 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import static com.burak.barman.DBUtils.signUpUser;
-import static com.burak.barman.DBUtils.changeScene;
+import static com.burak.barman.daoImpl.UsersDaoImpl.signUpUser;
+import static com.burak.barman.ChangeScene.changeScene;
 import static com.burak.barman.utils.CheckPassword.checkInput;
 
 

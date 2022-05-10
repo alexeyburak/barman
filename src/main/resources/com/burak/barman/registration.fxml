@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.RegistrationController">
+<AnchorPane prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.RegistrationController">
    <children>
       <TextField fx:id="registrationTextUsername" layoutX="40.0" layoutY="125.0" promptText="Username" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="125.0" />
       <PasswordField fx:id="registrationPassword" layoutX="40.0" layoutY="187.0" promptText="Password" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="175.0" />

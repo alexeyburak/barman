@@ -1,43 +1,26 @@
-package com.burak.barman;
+package com.burak.barman.daoImpl;
 
-/*
+import com.burak.barman.dao.IDAOUsers;
+import com.burak.barman.models.User;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+
+import java.sql.*;
+
+import static com.burak.barman.ChangeScene.changeScene;
+
+/**
  * Barman
  * Created by Alexey Burak
  */
 
-import com.burak.barman.models.User;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.*;
-import java.util.Objects;
-
-public class DBUtils {
+public class UsersDaoImpl implements IDAOUsers {
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/barman";
     private static final String DATABASE_USER = "root";
     private static final String DATABASE_PASSWORD = "alexeyburak";
-    static User user = new User();
-
-    // Changing Scenes
-    public static void changeScene(ActionEvent event, String fxmlFile) {
-        FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(Objects.requireNonNull(root)));
-        stage.show();
-    }
+    public static User user = new User();
 
     // Registration new users
     public static void signUpUser(ActionEvent event, String username, String password, Label labelWrong) {
@@ -59,7 +42,8 @@ public class DBUtils {
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
-
+                user.setUsername(username);
+                System.out.println(user.toString() + " signUp system");
                 changeScene(event, "mainStage.fxml");
             }
         } catch (SQLException e) {

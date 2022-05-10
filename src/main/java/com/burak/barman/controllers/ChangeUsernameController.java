@@ -1,4 +1,4 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,9 +9,10 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.burak.barman.DBUtils.changeUsername;
-import static com.burak.barman.DBUtils.user;
-import static com.burak.barman.DBUtils.changeScene;
+
+import static com.burak.barman.daoImpl.UsersDaoImpl.changeUsername;
+import static com.burak.barman.daoImpl.UsersDaoImpl.user;
+import static com.burak.barman.ChangeScene.changeScene;
 
 /**
  * Barman
@@ -33,6 +34,7 @@ public class ChangeUsernameController implements Initializable {
         labelOldUsername.setText("your username is " + user.getUsername());
 
         buttonSafe.setOnAction(event -> {
+            //changeUsername(newUsername.getText(), labelWrong);
             changeUsername(newUsername.getText(), labelWrong);
         });
 

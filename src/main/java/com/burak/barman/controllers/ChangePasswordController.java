@@ -1,4 +1,4 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
 import com.burak.barman.utils.CheckPassword;
 import javafx.fxml.FXML;
@@ -11,8 +11,8 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import static com.burak.barman.DBUtils.changeScene;
-import static com.burak.barman.DBUtils.checkPassword;
+import static com.burak.barman.daoImpl.UsersDaoImpl.checkPassword;
+import static com.burak.barman.ChangeScene.changeScene;
 import static com.burak.barman.utils.GetHash.getHash;
 
 

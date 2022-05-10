@@ -12,4 +12,6 @@ module com.burak.barman {
 
     opens com.burak.barman to javafx.fxml;
     exports com.burak.barman;
+    exports com.burak.barman.controllers;
+    opens com.burak.barman.controllers to javafx.fxml;
 }
