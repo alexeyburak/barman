@@ -1,5 +1,6 @@
 package com.burak.barman.controllers;
 
+import com.burak.barman.daoImpl.UsersDaoImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,7 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import static com.burak.barman.daoImpl.UsersDaoImpl.changeUsername;
 import static com.burak.barman.daoImpl.UsersDaoImpl.user;
 import static com.burak.barman.ChangeScene.changeScene;
 
@@ -26,6 +26,10 @@ public class ChangeUsernameController implements Initializable {
     @FXML private Label labelOldUsername;
     @FXML private Button buttonSafe;
     @FXML private Button buttonBack;
+    private static final UsersDaoImpl usersDao;
+    static {
+        usersDao = new UsersDaoImpl();
+    }
 
 
     @Override
@@ -35,7 +39,7 @@ public class ChangeUsernameController implements Initializable {
 
         buttonSafe.setOnAction(event -> {
             //changeUsername(newUsername.getText(), labelWrong);
-            changeUsername(newUsername.getText(), labelWrong);
+            usersDao.changeUsername(newUsername.getText(), labelWrong);
         });
 
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));

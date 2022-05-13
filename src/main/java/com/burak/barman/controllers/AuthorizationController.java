@@ -1,10 +1,12 @@
 package com.burak.barman.controllers;
 
+
 /*
  * Barman
  * Created by Alexey Burak
  */
 
+import com.burak.barman.daoImpl.UsersDaoImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.ChangeScene.changeScene;
-import static com.burak.barman.daoImpl.UsersDaoImpl.logInUser;
 import static com.burak.barman.utils.GetHash.getHash;
 import static com.burak.barman.utils.Tools.showPassword;
 import static com.burak.barman.utils.Tools.showAlertConfirmation;
@@ -28,6 +29,11 @@ public class AuthorizationController implements Initializable {
     @FXML private Label authorizationLabelWrong;
     @FXML private TextField authorizationShowPassword;
     @FXML private CheckBox authorizationCheckBox;
+    private static final UsersDaoImpl usersDao;
+    static {
+        usersDao = new UsersDaoImpl();
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
@@ -38,10 +44,10 @@ public class AuthorizationController implements Initializable {
                 try {
                     // If user sees password being entered
                     if (authorizationCheckBox.isSelected()) {
-                        logInUser(event, authorizationTextUsername.getText(), String.valueOf(getHash(authorizationShowPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
+                        usersDao.logInUser(event, authorizationTextUsername.getText(), String.valueOf(getHash(authorizationShowPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
                     } else {
                         // If user does not see password being entered
-                        logInUser(event, authorizationTextUsername.getText(), String.valueOf(getHash(authorizationTextPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
+                        usersDao.logInUser(event, authorizationTextUsername.getText(), String.valueOf(getHash(authorizationTextPassword.getText())), authorizationLabelWrong, authorizationTextPassword);
                     }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();

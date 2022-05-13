@@ -1,6 +1,8 @@
 package com.burak.barman.daoImpl;
 
-import com.burak.barman.dao.IDAOUsers;
+
+import com.burak.barman.dao.AbstractDao;
+import com.burak.barman.dao.DataBase;
 import com.burak.barman.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -15,84 +17,75 @@ import static com.burak.barman.ChangeScene.changeScene;
  * Created by Alexey Burak
  */
 
-public class UsersDaoImpl implements IDAOUsers {
+public class UsersDaoImpl extends AbstractDao {
 
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/barman";
-    private static final String DATABASE_USER = "root";
-    private static final String DATABASE_PASSWORD = "alexeyburak";
     public static User user = new User();
 
+    @Override
+    public Connection getConnection() {
+        return DataBase.getInstance().getConnection();
+    }
+
     // Registration new users
-    public static void signUpUser(ActionEvent event, String username, String password, Label labelWrong) {
-        Connection connection = null;
+    public void signUpUser(ActionEvent event, String username, String password, Label labelWrong) {
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            psCheckUserExists = getConnection().prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
             resultSet = psCheckUserExists.executeQuery();
 
             if (resultSet.isBeforeFirst()) {
                 labelWrong.setText("User exists");
             } else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+                psInsert = getConnection().prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
+
                 user.setUsername(username);
                 System.out.println(user.toString() + " signUp system");
                 changeScene(event, "mainStage.fxml");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("signUpUser error");
+            System.out.println("signUpUser error " + e);
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    System.out.println("error closing the stream " + e);
                 }
             }
             if (psCheckUserExists != null) {
                 try {
                     psCheckUserExists.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    System.out.println("error closing the stream " + e);
                 }
             }
             if (psInsert != null) {
                 try {
                     psInsert.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    System.out.println("error closing the stream " + e);
                 }
             }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
         }
     }
 
     // Change users username
-    public static void changeUsername(String newUsername, Label labelWrong) {
-        Connection connection = null;
+    public void changeUsername(String newUsername, Label labelWrong) {
         PreparedStatement prepareStatement = null;
 
         if (!newUsername.isEmpty()) {
             try {
-                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-                prepareStatement = connection.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
+                prepareStatement = getConnection().prepareStatement("UPDATE users SET username = ? WHERE username = ?");
                 prepareStatement.setString(1, newUsername);
                 prepareStatement.setString(2, user.getUsername());
+
                 user.setUsername(newUsername);
                 prepareStatement.executeUpdate();
                 labelWrong.setText("username has changed");
@@ -103,14 +96,7 @@ public class UsersDaoImpl implements IDAOUsers {
                     try {
                         prepareStatement.close();
                     } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                        System.out.println("error closing the stream " + e);
                     }
                 }
             }
@@ -120,49 +106,36 @@ public class UsersDaoImpl implements IDAOUsers {
     }
 
     // Change users password
-    private static void changePassword(String newPassword) {
-        Connection connection= null;
+    private void changePassword(String newPassword) {
         PreparedStatement prepareStatement= null;
 
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            prepareStatement = connection.prepareStatement("UPDATE users SET password = ? WHERE username = ?");
+            prepareStatement = getConnection().prepareStatement("UPDATE users SET password = ? WHERE username = ?");
             prepareStatement.setString(1, newPassword);
             prepareStatement.setString(2, user.getUsername());
 
             prepareStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("changePassword error");
+            System.out.println("changePassword error" + e);
         } finally {
             if (prepareStatement != null) {
                 try {
                     prepareStatement.close();
-
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
                 }
             }
         }
     }
 
     // Check old password in Data
-    public static void checkPassword(String oldPassword, String newPassword, Label labelWrong) {
-        Connection connection = null;
+    public void checkPassword(String oldPassword, String newPassword, Label labelWrong) {
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            prepareStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            prepareStatement = getConnection().prepareStatement("SELECT password FROM users WHERE username = ?");
             prepareStatement.setString(1, user.getUsername());
             resultSet = prepareStatement.executeQuery();
 
@@ -175,42 +148,32 @@ public class UsersDaoImpl implements IDAOUsers {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("checkPassword error");
+            System.out.println("checkPassword error " + e);
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
                 }
             }
             if (prepareStatement != null) {
                 try {
                     prepareStatement.close();
-
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
                 }
             }
         }
     }
 
     // Login users
-    public static void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
-        Connection connection = null;
+    public void logInUser(ActionEvent event, String username, String password, Label labelWrong, PasswordField passwordField) {
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
+
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            prepareStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            prepareStatement = getConnection().prepareStatement("SELECT password FROM users WHERE username = ?");
             prepareStatement.setString(1, username);
             resultSet = prepareStatement.executeQuery();
 
@@ -229,33 +192,23 @@ public class UsersDaoImpl implements IDAOUsers {
                         passwordField.clear();
                     }
                 }
-
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("logInUser error");
+            System.out.println("logInUser error" + e);
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
                 }
             }
             if (prepareStatement != null) {
                 try {
                     prepareStatement.close();
 
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
                 }
             }
         }

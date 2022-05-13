@@ -5,6 +5,7 @@ package com.burak.barman.controllers;
  * Created by Alexey Burak
  */
 
+import com.burak.barman.daoImpl.UsersDaoImpl;
 import com.burak.barman.utils.GetHash;
 
 import javafx.fxml.FXML;
@@ -15,7 +16,6 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import static com.burak.barman.daoImpl.UsersDaoImpl.signUpUser;
 import static com.burak.barman.ChangeScene.changeScene;
 import static com.burak.barman.utils.CheckPassword.checkInput;
 
@@ -30,7 +30,10 @@ public class RegistrationController implements Initializable {
     @FXML private Label registrationLabelWrong;
     @FXML private Hyperlink registrationHyperlink;
     @FXML private Button registrationButtonBack;
-
+    private static final UsersDaoImpl usersDao;
+    static {
+        usersDao = new UsersDaoImpl();
+    }
 
     private void clearFields() {
         registrationPassword.clear();
@@ -50,7 +53,7 @@ public class RegistrationController implements Initializable {
             } else if (!registrationTextUsername.getText().trim().isEmpty() && !registrationPassword.getText().isEmpty() && !registrationPassword.getText().isEmpty()) {
                 try {
                     // it checks mistakes with Database
-                    signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
+                    usersDao.signUpUser(event, registrationTextUsername.getText(), String.valueOf(GetHash.getHash(registrationPassword.getText())), registrationLabelWrong);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
