@@ -11,13 +11,15 @@ public class Cocktail {
     private String name;
     private String recipe;
     private String ingredients;
+    private String img;
 
 
-    public Cocktail(int id, String name, String recipe, String ingredients) {
+    public Cocktail(int id, String name, String recipe, String ingredients, String img) {
         this.id = id;
         this.name = name;
         this.recipe = recipe;
         this.ingredients = ingredients;
+        this.img = img;
     }
 
     public int getId() {
@@ -50,5 +52,13 @@ public class Cocktail {
 
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

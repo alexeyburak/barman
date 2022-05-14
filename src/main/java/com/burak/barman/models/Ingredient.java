@@ -12,10 +12,10 @@ public class Ingredient {
     private int fortress; //крепость
     private String category;
 
-    public Ingredient(String title, int id, int quantity, String category) {
+    public Ingredient(String title, int id, int fortress, String category) {
         this.title = title;
         this.id = id;
-        this.fortress = quantity;
+        this.fortress = fortress;
         this.category = category;
     }
 
