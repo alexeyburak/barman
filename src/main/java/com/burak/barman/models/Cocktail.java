@@ -7,18 +7,23 @@ package com.burak.barman.models;
 
 public class Cocktail {
 
+    //SELECT GROUP_CONCAT(cocktails.id), cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount), GROUP_CONCAT(cocktails.preparation), GROUP_CONCAT(cocktails.img)
+    //FROM cocktails left join recipe on recipe.id_cocktail=cocktails.id left join
+    //ingredients on recipe.id_ingredient=ingredients.id Group by name
     private int id;
     private String name;
     private String recipe;
-    private String ingredients;
+    private String preparation;
+    private String recipe_amount;
     private String img;
 
 
-    public Cocktail(int id, String name, String recipe, String ingredients, String img) {
+    public Cocktail(int id, String name, String recipe, String preparation, String recipe_amount, String img) {
         this.id = id;
         this.name = name;
         this.recipe = recipe;
-        this.ingredients = ingredients;
+        this.preparation = preparation;
+        this.recipe_amount = recipe_amount;
         this.img = img;
     }
 
@@ -47,11 +52,11 @@ public class Cocktail {
     }
 
     public String getIngredients() {
-        return ingredients;
+        return preparation;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(String preparation) {
+        this.preparation = preparation;
     }
 
     public String getImg() {
@@ -61,4 +66,9 @@ public class Cocktail {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public String getRecipe_amount() {
+        return recipe_amount;
+    }
+
 }
