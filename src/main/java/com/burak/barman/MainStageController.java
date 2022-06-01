@@ -1,16 +1,23 @@
-package com.burak.barman.controllers;
+package com.burak.barman;
 
 /*
  * Barman
  * Created by Alexey Burak
  */
 
+import com.burak.barman.daoImpl.CocktailsDaoImpl;
+import com.burak.barman.models.Cocktail;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 
 import java.awt.*;
 import java.io.IOException;
@@ -19,6 +26,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.daoImpl.UsersDaoImpl.user;
@@ -36,7 +44,13 @@ public class MainStageController implements Initializable {
     @FXML private Button buttonIngredient;
     @FXML private Button buttonConstructor;
     @FXML private Button buttonMyBar;
+    @FXML private GridPane grid;
     @FXML private ComboBox<String> comboBoxAccount;
+    private static final CocktailsDaoImpl cocktailsDao;
+    static {
+        cocktailsDao = new CocktailsDaoImpl();
+    }
+
 
     Collection<String> greeting = new ArrayList<>();
 
@@ -48,6 +62,29 @@ public class MainStageController implements Initializable {
                 "Change username",
                 "SignOut"
         );
+
+        int column = 1, row = 1;
+        List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
+        try {
+            for (int i = 0; i < 3; i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemCocktail itemController = fxmlLoader.getController();
+                Cocktail cocktail = cocktails.get(i);
+                itemController.setData(cocktail);
+                grid.add(anchorPane, column++, row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(5, 5, 5, 5));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Choosing a day for greeting
         choosingGreeting(greeting);
@@ -76,6 +113,9 @@ public class MainStageController implements Initializable {
 
         // Go to Constructor Scene
         buttonConstructor.setOnAction(event -> changeScene(event, "constructor.fxml"));
+
+        // Go to MyBar Scene
+        buttonMyBar.setOnAction(event -> changeScene(event, "myBar.fxml"));
 
     }
 

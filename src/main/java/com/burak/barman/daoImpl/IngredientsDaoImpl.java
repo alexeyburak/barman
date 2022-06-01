@@ -6,6 +6,7 @@ import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Ingredient;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -24,7 +25,7 @@ public class IngredientsDaoImpl extends AbstractDao implements IDao<Ingredient> 
 
     @Override
     public Collection<Ingredient> findAll() {
-        Collection<Ingredient> ingredients = new LinkedList<>();
+        Collection<Ingredient> ingredients = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
 

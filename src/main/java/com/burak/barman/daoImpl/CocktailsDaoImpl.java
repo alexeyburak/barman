@@ -6,8 +6,9 @@ import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Cocktail;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Barman
@@ -24,28 +25,32 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
 
     @Override
     public Collection<Cocktail> findAll() {
-        Collection<Cocktail> cocktails = new LinkedList<>();
+        List<Cocktail> cocktails = new ArrayList<>();
+
+        // Used twice to work around problems arising from GROUP_CONCAT
+        // Used for id, preparation, img
+        PreparedStatement prepareStatementID = null;
+        // Used for name, recipe, recipeAmount
         PreparedStatement prepareStatement = null;
+        ResultSet resultSetID = null;
         ResultSet resultSet = null;
-
         try {
-            prepareStatement = getConnection().prepareStatement("SELECT GROUP_CONCAT(cocktails.id), cocktails.name, " +
-                    "GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount), " +
-                    "GROUP_CONCAT(cocktails.preparation), GROUP_CONCAT(cocktails.img) FROM cocktails LEFT JOIN recipe ON recipe.id_cocktail=cocktails.id " +
-                    "LEFT JOIN ingredients ON recipe.id_ingredient=ingredients.id GROUP BY name");
+            prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
+                    "left join recipe on recipe.id_cocktail=cocktails.id left " +
+                    "join ingredients on recipe.id_ingredient=ingredients.id  Group by name\n");
+            prepareStatementID = getConnection().prepareStatement("SELECT id, img, preparation FROM cocktails");
             resultSet = prepareStatement.executeQuery();
+            resultSetID = prepareStatementID.executeQuery();
 
-            while (resultSet.next()) {
-                String id = resultSet.getString("GROUP_CONCAT(cocktails.id)");
+            while (resultSet.next() && resultSetID.next()) {
+                int id = resultSetID.getInt("id");
                 String name = resultSet.getString("cocktails.name");
                 String recipe = resultSet.getString("GROUP_CONCAT(recipe.id_ingredient)");
                 String recipeAmount = resultSet.getString("GROUP_CONCAT(recipe.amount)");
-                String preparation = resultSet.getString("GROUP_CONCAT(cocktails.preparation)");
-                String img = resultSet.getString("GROUP_CONCAT(cocktails.img)");
-                char c = id.charAt(0);
-                int y = Character.getNumericValue(c);
+                String preparation = resultSetID.getString("preparation");
+                String img = resultSetID.getString("img");
 
-                Cocktail cocktail = new Cocktail(y, name, recipe, preparation, recipeAmount, img);
+                Cocktail cocktail = new Cocktail(id, name, recipe, preparation, recipeAmount, img);
 
                 cocktails.add(cocktail);
 
@@ -60,9 +65,23 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
                     System.out.println("error closing the stream " + e);
                 }
             }
+            if (prepareStatementID != null) {
+                try {
+                    prepareStatementID.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
             if (resultSet != null) {
                 try {
                     resultSet.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (resultSetID != null) {
+                try {
+                    resultSetID.close();
                 } catch (SQLException e) {
                     System.out.println("error closing the stream " + e);
                 }

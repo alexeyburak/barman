@@ -9,7 +9,7 @@ public class Ingredient {
 
     private int id;
     private String title;
-    private int fortress; //крепость
+    private int fortress;
     private String category;
 
     public Ingredient(String title, int id, int fortress, String category) {
@@ -23,10 +23,6 @@ public class Ingredient {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getId() {
         return id;
     }
@@ -35,20 +31,11 @@ public class Ingredient {
         this.id = id;
     }
 
-
     public int getFortress() {
         return fortress;
     }
 
-    public void setFortress(int fortress) {
-        this.fortress = fortress;
-    }
-
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

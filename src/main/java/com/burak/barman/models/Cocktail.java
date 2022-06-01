@@ -7,9 +7,6 @@ package com.burak.barman.models;
 
 public class Cocktail {
 
-    //SELECT GROUP_CONCAT(cocktails.id), cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount), GROUP_CONCAT(cocktails.preparation), GROUP_CONCAT(cocktails.img)
-    //FROM cocktails left join recipe on recipe.id_cocktail=cocktails.id left join
-    //ingredients on recipe.id_ingredient=ingredients.id Group by name
     private int id;
     private String name;
     private String recipe;

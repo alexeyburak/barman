@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.ItemIngredient">
+   <children>
+      <Label fx:id="name" alignment="TOP_CENTER" layoutX="5.0" layoutY="20.0" prefHeight="40.0" prefWidth="140.0" text="name" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="fortress" layoutX="10.0" layoutY="102.0" text="fortress" />
+      <Label fx:id="category" layoutX="9.0" layoutY="76.0" text="category" />
+   </children>
+</AnchorPane>

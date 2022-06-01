@@ -2,6 +2,7 @@ package com.burak.barman.utils;
 
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,12 @@ import java.util.Optional;
  */
 
 public class Tools {
+
+    // Get an image
+    public static Image getImage(String path) {
+        File file = new File(path);
+        return new Image(file.toURI().toString());
+    }
 
     // Confirmation alert
     public static boolean showAlertConfirmation(String title, String headerText, String contextText) {

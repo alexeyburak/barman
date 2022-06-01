@@ -1,49 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.MainStageController">
-   <children>
-      <BorderPane layoutX="288.0" layoutY="134.0" prefHeight="266.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox prefHeight="62.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.MainStageController">
+   <BorderPane layoutX="288.0" layoutY="134.0" prefHeight="266.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <top>
+         <HBox prefHeight="105.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <Label prefHeight="80.0" prefWidth="105.0" text="icon" />
+            <Button fx:id="buttonMyBar" mnemonicParsing="false" text="My bar" />
+            <Button fx:id="buttonIngredient" mnemonicParsing="false" text="Ingredient" />
+            <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
+            <ComboBox fx:id="comboBoxAccount" prefHeight="26.0" prefWidth="98.0" promptText="Account" />
+         </HBox>
+      </top>
+      <bottom>
+         <HBox prefHeight="63.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <Label text="contact us " />
+            <Label text="email" />
+            <Label text="Works on Open Source" />
+            <Button fx:id="buttonGitHub" mnemonicParsing="false" text="GitHub" />
+         </HBox>
+      </bottom>
+      <left>
+         <VBox prefHeight="492.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+            <Label fx:id="labelSayHiName">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelSayHi" text="Label" />
+         </VBox>
+      </left>
+      <center>
+         <HBox prefHeight="432.0" prefWidth="719.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="432.0" prefWidth="700.0">
                <children>
-                  <Label prefHeight="80.0" prefWidth="105.0" text="icon" />
-                  <Button fx:id="buttonMyBar" mnemonicParsing="false" text="My bar" />
-                  <Button fx:id="buttonIngredient" mnemonicParsing="false" text="Ingredient" />
-                  <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
-                  <ComboBox fx:id="comboBoxAccount" prefHeight="26.0" prefWidth="98.0" promptText="Account" />
-               </children>
-            </HBox>
-         </top>
-         <bottom>
-            <HBox prefHeight="46.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label text="contact us " />
-                  <Label text="email" />
-                  <Label text="Works on Open Source" />
-                  <Button fx:id="buttonGitHub" mnemonicParsing="false" text="GitHub" />
-               </children></HBox>
-         </bottom>
-         <left>
-            <VBox prefHeight="492.0" prefWidth="250.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="labelSayHiName">
+                  <Label text="Recomended cocktails">
                      <font>
-                        <Font size="50.0" />
+                        <Font size="27.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="28.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label fx:id="labelSayHi" text="Label" />
+                  <AnchorPane prefHeight="168.0" prefWidth="700.0">
+                     <children>
+                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
-         </left>
-      </BorderPane>
-   </children>
+         </HBox>
+      </center>
+   </BorderPane>
 </AnchorPane>
