@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.AuthorizationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="354.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.AuthorizationController">
    <children>
       <Button fx:id="authorizationButtonAccept" layoutX="40.0" layoutY="297.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="274.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Login" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
       <Label fx:id="authorizationLabelWrong" alignment="CENTER" layoutX="40.0" layoutY="259.0" prefHeight="9.0" prefWidth="274.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#861a1a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
