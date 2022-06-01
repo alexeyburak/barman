@@ -35,5 +35,6 @@
       </HBox>
       <TextField fx:id="findTextField" layoutX="774.0" layoutY="146.0" promptText="write title" />
       <Button fx:id="findButton" layoutX="789.0" layoutY="210.0" mnemonicParsing="false" text="find" />
+      <Button fx:id="showAllButton" layoutX="865.0" layoutY="210.0" mnemonicParsing="false" text="show all" />
    </children>
 </AnchorPane>

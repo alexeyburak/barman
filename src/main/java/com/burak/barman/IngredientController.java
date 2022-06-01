@@ -30,6 +30,7 @@ public class IngredientController implements Initializable {
     @FXML private Button buttonConstructor;
     @FXML private Button buttonMyBar;
     @FXML private Button findButton;
+    @FXML private Button showAllButton;
     @FXML private TextField findTextField;
     @FXML private GridPane grid;
 
@@ -67,11 +68,17 @@ public class IngredientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<Ingredient> ingredients = (List<Ingredient>) ingredientsDao.findAll();
+        // If Enter is pressed on the keyboard
+        findTextField.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && !findTextField.getText().isEmpty()) {
+                findButton.fire();
+            } else if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && findTextField.getText().isEmpty()) {
+                showAllButton.fire();
+            }
+        });
 
-        if (findTextField.getText().isEmpty()) {
-            addItem(ingredients, grid);
-        }
+        List<Ingredient> ingredients = (List<Ingredient>) ingredientsDao.findAll();
+        addItem(ingredients, grid);
 
         findButton.setOnAction(event -> {
             if (!findTextField.getText().isEmpty()) {
@@ -79,6 +86,11 @@ public class IngredientController implements Initializable {
                 grid.getChildren().clear();
                 addItem(findIngredient, grid);
             }
+        });
+
+        showAllButton.setOnAction(event -> {
+            grid.getChildren().clear();
+            addItem(ingredients, grid);
         });
 
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml")
