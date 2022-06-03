@@ -1,7 +1,7 @@
 package com.burak.barman;
 
-import com.burak.barman.daoImpl.IngredientsDaoImpl;
-import com.burak.barman.models.Ingredient;
+import com.burak.barman.daoImpl.CocktailsDaoImpl;
+import com.burak.barman.models.Cocktail;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,33 +24,32 @@ import static com.burak.barman.ChangeScene.changeScene;
  * Created by Alexey Burak
  */
 
-public class IngredientController implements Initializable {
+public class ConstructorController implements Initializable {
 
     @FXML private Button buttonBack;
-    @FXML private Button buttonConstructor;
+    @FXML private Button buttonIngredients;
     @FXML private Button buttonMyBar;
-    @FXML private Button findButton;
-    @FXML private Button showAllButton;
+    @FXML private Button buttonShowAll;
+    @FXML private Button buttonFind;
     @FXML private TextField findTextField;
     @FXML private GridPane grid;
-
-    private static final IngredientsDaoImpl ingredientsDao;
+    private static final CocktailsDaoImpl cocktailsDao;
     static {
-        ingredientsDao = new IngredientsDaoImpl();
+        cocktailsDao = new CocktailsDaoImpl();
     }
 
-    private void addItem(List<Ingredient> ingredients, GridPane grid) {
+    private void addToGrid(List<Cocktail> cocktails, GridPane grid) {
         int column = 0, row = 1;
         try {
-            for (Ingredient ingredient : ingredients) {
+            for (Cocktail cocktail : cocktails) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("itemIngredient.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                ItemIngredient itemIngredient = fxmlLoader.getController();
-                itemIngredient.setData(ingredient);
+                ItemCocktail itemController = fxmlLoader.getController();
+                itemController.setData(cocktail);
                 grid.add(anchorPane, column++, row);
                 if (column == 4) {
-                    column = 0;
+                    column = 1;
                     row++;
                 }
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -67,39 +66,44 @@ public class IngredientController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {
             if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && !findTextField.getText().isEmpty()) {
-                findButton.fire();
+                buttonFind.fire();
             } else if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && findTextField.getText().isEmpty()) {
-                showAllButton.fire();
+                buttonShowAll.fire();
             }
         });
 
-        List<Ingredient> ingredients = (List<Ingredient>) ingredientsDao.findAll();
-        addItem(ingredients, grid);
+        List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
+        addToGrid(cocktails, grid);
 
-        findButton.setOnAction(event -> {
+        buttonFind.setOnAction(event -> {
             if (!findTextField.getText().isEmpty()) {
-                List<Ingredient> findIngredient = (List<Ingredient>) ingredientsDao.findOne(findTextField.getText());
+                List<Cocktail> findOneCocktail = (List<Cocktail>) cocktailsDao.findOne(findTextField.getText());
                 grid.getChildren().clear();
-                addItem(findIngredient, grid);
+                addToGrid(findOneCocktail, grid);
             }
         });
 
-        showAllButton.setOnAction(event -> {
+        buttonShowAll.setOnAction(event -> {
             grid.getChildren().clear();
-            addItem(ingredients, grid);
+            addToGrid(cocktails, grid);
         });
 
-        buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml")
-        );
 
-        buttonConstructor.setOnAction(event -> changeScene(event, "constructor.fxml"));
+        // Go to main stage
+        buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
 
+        // Go to ingredient stage
+        buttonIngredients.setOnAction(event -> changeScene(event, "ingredient.fxml"));
+
+        // Go to my bar stage
         buttonMyBar.setOnAction(event -> changeScene(event, "myBar.fxml"));
 
     }

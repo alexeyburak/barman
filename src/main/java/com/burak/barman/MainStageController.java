@@ -66,7 +66,7 @@ public class MainStageController implements Initializable {
         int column = 1, row = 1;
         List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
         try {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
