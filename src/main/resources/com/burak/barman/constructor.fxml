@@ -20,20 +20,16 @@
          </children>
       </HBox>
       <ScrollPane layoutX="36.0" layoutY="99.0" prefHeight="475.0" prefWidth="720.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="732.0">
-               <children>
-                  <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </content>
+         <content>
+            <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
       </ScrollPane>
-      <TextField fx:id="findTextField" layoutX="802.0" layoutY="135.0" prefHeight="20.0" prefWidth="149.0" promptText="find" />
-      <Button fx:id="buttonFind" layoutX="775.0" layoutY="200.0" mnemonicParsing="false" text="find" />
-      <Button fx:id="buttonShowAll" layoutX="885.0" layoutY="201.0" mnemonicParsing="false" text="show all" />
+      <TextField fx:id="findTextField" layoutX="775.0" layoutY="99.0" prefHeight="26.0" prefWidth="203.0" promptText="For example, sex on the beach" />
+      <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Find" />
+      <Button fx:id="buttonShowAll" layoutX="900.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Show All" />
    </children>
 </AnchorPane>

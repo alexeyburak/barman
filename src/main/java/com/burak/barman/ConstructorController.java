@@ -49,7 +49,7 @@ public class ConstructorController implements Initializable {
                 itemController.setData(cocktail);
                 grid.add(anchorPane, column++, row);
                 if (column == 4) {
-                    column = 1;
+                    column = 0;
                     row++;
                 }
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);

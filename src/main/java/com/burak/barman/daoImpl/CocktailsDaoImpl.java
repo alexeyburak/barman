@@ -4,12 +4,10 @@ import com.burak.barman.dao.AbstractDao;
 import com.burak.barman.dao.DataBase;
 import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Cocktail;
-import com.burak.barman.models.Ingredient;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,14 +37,14 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
         try {
             prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
                     "left join recipe on recipe.id_cocktail=cocktails.id left " +
-                    "join ingredients on recipe.id_ingredient=ingredients.id  Group by name\n");
-            prepareStatementID = getConnection().prepareStatement("SELECT id, img, preparation FROM cocktails");
+                    "join ingredients on recipe.id_ingredient=ingredients.id  Group by name");
+            prepareStatementID = getConnection().prepareStatement("SELECT name, id, img, preparation FROM cocktails");
             resultSet = prepareStatement.executeQuery();
             resultSetID = prepareStatementID.executeQuery();
 
             while (resultSet.next() && resultSetID.next()) {
                 int id = resultSetID.getInt("id");
-                String name = resultSet.getString("cocktails.name");
+                String name = resultSetID.getString("name");
                 String recipe = resultSet.getString("GROUP_CONCAT(recipe.id_ingredient)");
                 String recipeAmount = resultSet.getString("GROUP_CONCAT(recipe.amount)");
                 String preparation = resultSetID.getString("preparation");
