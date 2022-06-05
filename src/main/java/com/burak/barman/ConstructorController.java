@@ -2,6 +2,7 @@ package com.burak.barman;
 
 import com.burak.barman.daoImpl.CocktailsDaoImpl;
 import com.burak.barman.models.Cocktail;
+import com.burak.barman.utils.ICatchClicking;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,7 +26,7 @@ import static com.burak.barman.ChangeScene.changeScene;
  * Created by Alexey Burak
  */
 
-public class ConstructorController implements Initializable {
+public class ConstructorController implements Initializable  {
 
     @FXML private Button buttonBack;
     @FXML private Button buttonIngredients;
@@ -35,14 +36,17 @@ public class ConstructorController implements Initializable {
     @FXML private TextField findTextField;
     @FXML private Label labelWrong;
     @FXML private GridPane grid;
+    private ICatchClicking onClick;
     private static final CocktailsDaoImpl cocktailsDao;
     static {
         cocktailsDao = new CocktailsDaoImpl();
     }
 
-    private void addToGrid(List<Cocktail> cocktails, GridPane grid) {
+    // Add List of Cocktails to GridPane
+    private void addToGrid(List<Cocktail> cocktails, GridPane grid, ICatchClicking onClick) {
         int column = 0, row = 1;
         try {
+            // If there are no cocktails
             if (cocktails.size() == 0) {
                 labelWrong.setText("No cocktails were found!");
                 return;
@@ -52,7 +56,7 @@ public class ConstructorController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemCocktail itemController = fxmlLoader.getController();
-                itemController.setData(cocktail);
+                itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);
                 if (column == 4) {
                     column = 0;
@@ -73,9 +77,21 @@ public class ConstructorController implements Initializable {
         }
     }
 
+    // !!!!!!!!!!
+    private void goToCocktail(Cocktail cocktail) {
+        labelWrong.setText(cocktail.getRecipe());
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        onClick = new ICatchClicking() {
+            @Override
+            public void onClick(Cocktail cocktail) {
+                goToCocktail(cocktail);
+            }
+        };
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {
@@ -86,22 +102,25 @@ public class ConstructorController implements Initializable {
             }
         });
 
+        // Add all cocktails to the grid
         List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
-        addToGrid(cocktails, grid);
+        addToGrid(cocktails, grid, onClick);
 
+        // Show finding result
         buttonFind.setOnAction(event -> {
             if (!findTextField.getText().isEmpty()) {
                 labelWrong.setText("");
                 List<Cocktail> findOneCocktail = (List<Cocktail>) cocktailsDao.findOne(findTextField.getText());
                 grid.getChildren().clear();
-                addToGrid(findOneCocktail, grid);
+                addToGrid(findOneCocktail, grid, onClick);
             }
         });
 
+        // Show all cocktails
         buttonShowAll.setOnAction(event -> {
             labelWrong.setText("");
             grid.getChildren().clear();
-            addToGrid(cocktails, grid);
+            addToGrid(cocktails, grid, onClick);
         });
 
 

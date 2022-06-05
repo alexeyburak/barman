@@ -45,8 +45,10 @@ public class IngredientController implements Initializable {
     private void addItem(List<Ingredient> ingredients, GridPane grid) {
         int column = 0, row = 1;
         try {
+            // If there are no ingredients
             if (ingredients.size() == 0) {
                 labelWrong.setText("No ingredients were found!");
+                return;
             }
             for (Ingredient ingredient : ingredients) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -85,9 +87,11 @@ public class IngredientController implements Initializable {
             }
         });
 
+        // Add all ingredients to the grid
         List<Ingredient> ingredients = (List<Ingredient>) ingredientsDao.findAll();
         addItem(ingredients, grid);
 
+        // Show finding result
         findButton.setOnAction(event -> {
             labelWrong.setText("");
             if (!findTextField.getText().isEmpty()) {
@@ -97,17 +101,21 @@ public class IngredientController implements Initializable {
             }
         });
 
+        // Show all ingredients
         showAllButton.setOnAction(event -> {
             labelWrong.setText("");
             grid.getChildren().clear();
             addItem(ingredients, grid);
         });
 
+        // Go to the main page
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml")
         );
 
+        // Go to the constructor page
         buttonConstructor.setOnAction(event -> changeScene(event, "constructor.fxml"));
 
+        // Go to my bar page
         buttonMyBar.setOnAction(event -> changeScene(event, "myBar.fxml"));
 
     }

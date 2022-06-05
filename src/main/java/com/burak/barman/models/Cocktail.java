@@ -7,7 +7,7 @@ package com.burak.barman.models;
 
 public class Cocktail {
 
-    private int id;
+    private final int id;
     private String name;
     private String recipe;
     private String preparation;
@@ -22,14 +22,6 @@ public class Cocktail {
         this.preparation = preparation;
         this.recipe_amount = recipe_amount;
         this.img = img;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -48,12 +40,20 @@ public class Cocktail {
         this.recipe = recipe;
     }
 
-    public String getIngredients() {
+    public String getPreparation() {
         return preparation;
     }
 
-    public void setIngredients(String preparation) {
+    public void setPreparation(String preparation) {
         this.preparation = preparation;
+    }
+
+    public String getRecipe_amount() {
+        return recipe_amount;
+    }
+
+    public void setRecipe_amount(String recipe_amount) {
+        this.recipe_amount = recipe_amount;
     }
 
     public String getImg() {
@@ -64,8 +64,7 @@ public class Cocktail {
         this.img = img;
     }
 
-    public String getRecipe_amount() {
-        return recipe_amount;
+    public int getId() {
+        return id;
     }
-
 }

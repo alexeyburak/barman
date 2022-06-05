@@ -7,6 +7,7 @@ package com.burak.barman;
 
 import com.burak.barman.daoImpl.CocktailsDaoImpl;
 import com.burak.barman.models.Cocktail;
+import com.burak.barman.utils.ICatchClicking;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,25 +47,16 @@ public class MainStageController implements Initializable {
     @FXML private Button buttonMyBar;
     @FXML private GridPane grid;
     @FXML private ComboBox<String> comboBoxAccount;
+
     private static final CocktailsDaoImpl cocktailsDao;
     static {
         cocktailsDao = new CocktailsDaoImpl();
     }
 
-
     Collection<String> greeting = new ArrayList<>();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Add items tp box "Account"
-        comboBoxAccount.getItems().addAll(
-                "Change password",
-                "Change username",
-                "SignOut"
-        );
-
+    private void addToGrid(List<Cocktail> cocktails, GridPane grid, ICatchClicking onClick) {
         int column = 1, row = 1;
-        List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
         try {
             for (int i = 0; i < 4; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -72,7 +64,7 @@ public class MainStageController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemCocktail itemController = fxmlLoader.getController();
                 Cocktail cocktail = cocktails.get(i);
-                itemController.setData(cocktail);
+                itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -85,6 +77,23 @@ public class MainStageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add items tp box "Account"
+        comboBoxAccount.getItems().addAll(
+                "Change password",
+                "Change username",
+                "SignOut"
+        );
+
+        // If item is clicked, change scene
+        ICatchClicking onClick = (cocktail) -> labelSayHiName.setText("sfsdf");
+
+        // Add all items to grid
+        List<Cocktail> cocktails = (List<Cocktail>) cocktailsDao.findAll();
+        addToGrid(cocktails, grid, onClick);
 
         // Choosing a day for greeting
         choosingGreeting(greeting);
