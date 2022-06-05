@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -32,6 +33,7 @@ public class ConstructorController implements Initializable {
     @FXML private Button buttonShowAll;
     @FXML private Button buttonFind;
     @FXML private TextField findTextField;
+    @FXML private Label labelWrong;
     @FXML private GridPane grid;
     private static final CocktailsDaoImpl cocktailsDao;
     static {
@@ -41,6 +43,10 @@ public class ConstructorController implements Initializable {
     private void addToGrid(List<Cocktail> cocktails, GridPane grid) {
         int column = 0, row = 1;
         try {
+            if (cocktails.size() == 0) {
+                labelWrong.setText("No cocktails were found!");
+                return;
+            }
             for (Cocktail cocktail : cocktails) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
@@ -85,6 +91,7 @@ public class ConstructorController implements Initializable {
 
         buttonFind.setOnAction(event -> {
             if (!findTextField.getText().isEmpty()) {
+                labelWrong.setText("");
                 List<Cocktail> findOneCocktail = (List<Cocktail>) cocktailsDao.findOne(findTextField.getText());
                 grid.getChildren().clear();
                 addToGrid(findOneCocktail, grid);
@@ -92,6 +99,7 @@ public class ConstructorController implements Initializable {
         });
 
         buttonShowAll.setOnAction(event -> {
+            labelWrong.setText("");
             grid.getChildren().clear();
             addToGrid(cocktails, grid);
         });

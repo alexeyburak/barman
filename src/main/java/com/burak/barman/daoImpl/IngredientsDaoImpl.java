@@ -64,13 +64,13 @@ public class IngredientsDaoImpl extends AbstractDao implements IDao<Ingredient> 
     }
 
     @Override
-    public Collection<Ingredient> findOne(String searchTitle) {
+    public Collection<Ingredient> findOne(String searchField) {
         Collection<Ingredient> ingredients = new LinkedList<>();
         PreparedStatement prepareStatement = null;
         ResultSet resultSet = null;
 
         try {
-            prepareStatement = getConnection().prepareStatement("SELECT title, id, fortress, category FROM ingredients WHERE title LIKE '%" + searchTitle + "%'");
+            prepareStatement = getConnection().prepareStatement("SELECT title, id, fortress, category FROM ingredients WHERE title LIKE '%" + searchField + "%' OR category LIKE '%"+ searchField + "%' OR fortress LIKE '"+ searchField + "'");
             resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {

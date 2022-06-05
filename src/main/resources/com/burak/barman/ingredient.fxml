@@ -36,5 +36,10 @@
       <TextField fx:id="findTextField" layoutX="774.0" layoutY="146.0" promptText="write title" />
       <Button fx:id="findButton" layoutX="789.0" layoutY="210.0" mnemonicParsing="false" text="find" />
       <Button fx:id="showAllButton" layoutX="865.0" layoutY="210.0" mnemonicParsing="false" text="show all" />
+      <Label fx:id="labelWrong" layoutX="839.0" layoutY="274.0" textFill="#d76666">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
