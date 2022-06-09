@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.CocktailMainPageController">
    <children>
@@ -36,12 +35,9 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="name" text="Label">
-                     <font>
-                        <Font size="44.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="preparation" text="Label" />
+                  <Label fx:id="preparation" text="ывавыа" />
+                  <Label fx:id="name" text="авывы" />
+                  <Label fx:id="recipe" text="Label" />
                </children>
             </VBox>
          </center>

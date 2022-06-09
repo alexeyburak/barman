@@ -6,10 +6,7 @@ import javafx.scene.image.Image;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Barman
@@ -17,6 +14,16 @@ import java.util.Optional;
  */
 
 public class Tools {
+
+    // Get numbers from string and return list of numbers which separated by comma
+    public static List<Integer> getNumbersFromString(String string) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] numbersString = string.split(",");
+        for (String number : numbersString) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return numbers;
+    }
 
     // Get an image
     public static Image getImage(String path) {

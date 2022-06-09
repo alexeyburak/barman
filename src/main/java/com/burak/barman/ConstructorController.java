@@ -7,16 +7,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.ChangeScene.changeScene;
@@ -73,25 +77,31 @@ public class ConstructorController implements Initializable  {
                 grid.setHgap(10);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("add to grid error" + e);
         }
     }
 
-    // !!!!!!!!!!
+    // Open chosen cocktail
     private void goToCocktail(Cocktail cocktail) {
-        labelWrong.setText(cocktail.getRecipe());
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("cocktailMainPage.fxml"));
+            Parent root = fxmlLoader.load();
+            CocktailMainPageController cocktailController = fxmlLoader.getController();
+            cocktailController.setData(cocktail);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Objects.requireNonNull(root)));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        onClick = new ICatchClicking() {
-            @Override
-            public void onClick(Cocktail cocktail) {
-                goToCocktail(cocktail);
-            }
-        };
+        // goToCocktail method after clicking on item
+        onClick = this::goToCocktail;
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {

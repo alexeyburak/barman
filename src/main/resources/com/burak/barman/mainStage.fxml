@@ -44,25 +44,21 @@
       <center>
          <HBox prefHeight="432.0" prefWidth="719.0" BorderPane.alignment="CENTER">
             <VBox prefHeight="432.0" prefWidth="700.0">
-               <children>
-                  <Label text="Recomended cocktails">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="28.0" />
-                     </VBox.margin>
-                  </Label>
-                  <AnchorPane prefHeight="168.0" prefWidth="700.0">
-                     <children>
-                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-               </children>
+               <Label text="Recommended cocktails">
+                  <font>
+                     <Font size="27.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets left="28.0"/>
+                  </VBox.margin>
+               </Label>
+               <AnchorPane prefHeight="168.0" prefWidth="700.0">
+                  <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                     </rowConstraints>
+                  </GridPane>
+               </AnchorPane>
             </VBox>
          </HBox>
       </center>
