@@ -89,6 +89,7 @@ public class MainStageController implements Initializable {
             CocktailMainPageController cocktailController = fxmlLoader.getController();
             cocktailController.setData(cocktail);
             Stage stage = new Stage();
+            stage.setTitle(cocktail.getName() + " - New Window");
             stage.setScene(new Scene(Objects.requireNonNull(root)));
             stage.show();
         } catch (IOException e) {

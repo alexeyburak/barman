@@ -173,7 +173,7 @@ public class UsersDaoImpl extends AbstractDao {
         ResultSet resultSet = null;
 
         try {
-            prepareStatement = getConnection().prepareStatement("SELECT password FROM users WHERE username = ?");
+            prepareStatement = getConnection().prepareStatement("SELECT password, favorites FROM users WHERE username = ?");
             prepareStatement.setString(1, username);
             resultSet = prepareStatement.executeQuery();
 
@@ -183,8 +183,10 @@ public class UsersDaoImpl extends AbstractDao {
             } else {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
+                    String userFavorites = resultSet.getString("favorites");
                     if (retrievedPassword.equals(password)) {
                         user.setUsername(username);
+                        user.setFavorites(userFavorites);
                         System.out.println(user.toString() + " logIn system");
                         changeScene(event, "mainStage.fxml");
                     } else {
