@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -31,6 +33,7 @@ public class IngredientController implements Initializable {
     @FXML private Button buttonMyBar;
     @FXML private Button findButton;
     @FXML private Button showAllButton;
+    @FXML private Label labelWrong;
     @FXML private TextField findTextField;
     @FXML private GridPane grid;
 
@@ -42,6 +45,11 @@ public class IngredientController implements Initializable {
     private void addItem(List<Ingredient> ingredients, GridPane grid) {
         int column = 0, row = 1;
         try {
+            // If there are no ingredients
+            if (ingredients.size() == 0) {
+                labelWrong.setText("No ingredients were found!");
+                return;
+            }
             for (Ingredient ingredient : ingredients) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemIngredient.fxml"));
@@ -59,7 +67,9 @@ public class IngredientController implements Initializable {
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(5, 5, 5, 5));
+                grid.setPadding(new Insets(10, 10, 10, 10));
+                grid.setVgap(10);
+                grid.setHgap(10);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,17 +80,20 @@ public class IngredientController implements Initializable {
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {
-            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && !findTextField.getText().isEmpty()) {
+            if (event.getCode().equals(KeyCode.ENTER) && !findTextField.getText().isEmpty()) {
                 findButton.fire();
-            } else if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && findTextField.getText().isEmpty()) {
+            } else if (event.getCode().equals(KeyCode.ENTER) && findTextField.getText().isEmpty()) {
                 showAllButton.fire();
             }
         });
 
+        // Add all ingredients to the grid
         List<Ingredient> ingredients = (List<Ingredient>) ingredientsDao.findAll();
         addItem(ingredients, grid);
 
+        // Show finding result
         findButton.setOnAction(event -> {
+            labelWrong.setText("");
             if (!findTextField.getText().isEmpty()) {
                 List<Ingredient> findIngredient = (List<Ingredient>) ingredientsDao.findOne(findTextField.getText());
                 grid.getChildren().clear();
@@ -88,16 +101,21 @@ public class IngredientController implements Initializable {
             }
         });
 
+        // Show all ingredients
         showAllButton.setOnAction(event -> {
+            labelWrong.setText("");
             grid.getChildren().clear();
             addItem(ingredients, grid);
         });
 
+        // Go to the main page
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml")
         );
 
+        // Go to the constructor page
         buttonConstructor.setOnAction(event -> changeScene(event, "constructor.fxml"));
 
+        // Go to my bar page
         buttonMyBar.setOnAction(event -> changeScene(event, "myBar.fxml"));
 
     }

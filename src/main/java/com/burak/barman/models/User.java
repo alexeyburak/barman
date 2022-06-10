@@ -9,6 +9,8 @@ public class User {
 
     private String username;
 
+    private String favorites;
+
     public User() {
     }
 
@@ -22,6 +24,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(String favorites) {
+        this.favorites = favorites;
     }
 
     @Override

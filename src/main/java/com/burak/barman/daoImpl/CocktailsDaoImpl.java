@@ -36,15 +36,15 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
         ResultSet resultSet = null;
         try {
             prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
-                    "left join recipe on recipe.id_cocktail=cocktails.id left " +
-                    "join ingredients on recipe.id_ingredient=ingredients.id  Group by name\n");
-            prepareStatementID = getConnection().prepareStatement("SELECT id, img, preparation FROM cocktails");
+                    "LEFT JOIN recipe ON recipe.id_cocktail=cocktails.id LEFT " +
+                    "JOIN ingredients ON recipe.id_ingredient=ingredients.id  GROUP BY cocktails.id");
+            prepareStatementID = getConnection().prepareStatement("SELECT name, id, img, preparation FROM cocktails");
             resultSet = prepareStatement.executeQuery();
             resultSetID = prepareStatementID.executeQuery();
 
             while (resultSet.next() && resultSetID.next()) {
                 int id = resultSetID.getInt("id");
-                String name = resultSet.getString("cocktails.name");
+                String name = resultSetID.getString("name");
                 String recipe = resultSet.getString("GROUP_CONCAT(recipe.id_ingredient)");
                 String recipeAmount = resultSet.getString("GROUP_CONCAT(recipe.amount)");
                 String preparation = resultSetID.getString("preparation");
@@ -92,6 +92,42 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
 
     @Override
     public Collection<Cocktail> findOne(String title) {
-        return null;
+        List<Cocktail> cocktails = new ArrayList<>();
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            prepareStatement = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE name LIKE '" + title + "%'");
+            resultSet = prepareStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String preparation = resultSet.getString("preparation");
+                String img = resultSet.getString("img");
+
+                Cocktail cocktail = new Cocktail(id, name, null, preparation, null, img);
+
+                cocktails.add(cocktail);
+            }
+        } catch (SQLException e) {
+            System.out.println("findOne error " + e);
+        } finally {
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+        }
+        return cocktails;
     }
 }

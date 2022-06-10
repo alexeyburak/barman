@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.CocktailMainPageController">
+   <children>
+      <BorderPane layoutX="400.0" layoutY="72.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Label" />
+                  <Button fx:id="buttonMyBar" mnemonicParsing="false" text="My Bar" />
+                  <Button fx:id="buttonIngredients" mnemonicParsing="false" text="Ingredients" />
+                  <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
+                  <Button fx:id="buttonBack" mnemonicParsing="false" text="Back" />
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <HBox prefHeight="400.0" prefWidth="389.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="img" fitHeight="380.0" fitWidth="385.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </left>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="preparation" text="ывавыа" />
+                  <Label fx:id="name" text="авывы" />
+                  <Label fx:id="recipe" text="Label" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
