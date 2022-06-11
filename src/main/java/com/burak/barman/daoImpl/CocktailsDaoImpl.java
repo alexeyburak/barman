@@ -130,4 +130,45 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
         }
         return cocktails;
     }
+
+    @Override
+    public Collection<Cocktail> findById(int id) {
+        List<Cocktail> cocktails = new ArrayList<>();
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            prepareStatement = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE id = ?");
+            prepareStatement.setInt(1, id);
+            resultSet = prepareStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String preparation = resultSet.getString("preparation");
+                String img = resultSet.getString("img");
+
+                Cocktail cocktail = new Cocktail(id, name, null, preparation, null, img);
+
+                cocktails.add(cocktail);
+            }
+        } catch (SQLException e) {
+            System.out.println("findOne error " + e);
+        } finally {
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+        }
+        return cocktails;
+    }
 }

@@ -215,4 +215,41 @@ public class UsersDaoImpl extends AbstractDao {
             }
         }
     }
+
+    // Get favorites cocktails
+    public String getFavoritesFromDao(User userUsername) {
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+        String retrievedFavorites = null;
+
+        try {
+            prepareStatement = getConnection().prepareStatement("SELECT favorites FROM users WHERE username = ?");
+            prepareStatement.setString(1, userUsername.getUsername());
+
+            resultSet = prepareStatement.executeQuery();
+
+            while (resultSet.next()) {
+                retrievedFavorites = resultSet.getString("favorites");
+
+            }
+        } catch (SQLException e) {
+            System.out.println("getFavorites error" + e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+        }
+        return retrievedFavorites;
+    }
 }
