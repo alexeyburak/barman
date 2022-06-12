@@ -59,7 +59,7 @@ public class MyBarController implements Initializable {
                 ItemCocktail itemController = fxmlLoader.getController();
                 itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);
-                if (column == 4) {
+                if (column == 3) {
                     column = 0;
                     row++;
                 }
@@ -102,7 +102,7 @@ public class MyBarController implements Initializable {
 
     private List<Cocktail> findFavorites() {
         String favorites = usersDaoImpl.getFavoritesFromDao(user);
-        if (favorites == null) {
+        if (favorites == null || favorites.isEmpty()) {
             emptyFavorites();
             return new ArrayList<>();
         }

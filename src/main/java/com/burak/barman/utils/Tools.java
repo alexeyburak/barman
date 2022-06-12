@@ -18,6 +18,9 @@ public class Tools {
     // Remove the resulting number from the string
     public static String removeNumber(String str, int number) {
         int index = str.indexOf(number + ",");
+        if (str.length() == 1) {
+            return "";
+        }
         if (index == -1) {
             return str.replace("," + number, "");
         }
