@@ -45,6 +45,27 @@ public class RegistrationController implements Initializable {
 
         // Registration new user
 
+        // If Enter is pressed on the keyboard when the username is focused, next field is focused
+        registrationTextUsername.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && registrationTextUsername.isFocused()) {
+                registrationPassword.requestFocus();
+            }
+        });
+
+        // If Enter is pressed on the keyboard when the password is focused, next field is focused
+        registrationPassword.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && registrationPassword.isFocused()) {
+                registrationConfirmPassword.requestFocus();
+            }
+        });
+
+        // If Enter is pressed on the keyboard, the button is clicked
+        registrationConfirmPassword.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && registrationConfirmPassword.isFocused()) {
+                registrationButtonSignUp.fire();
+            }
+        });
+
         // The password implies a string of more than 8 characters, which are not just numbers
         registrationButtonSignUp.setOnAction(event -> {
 

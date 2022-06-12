@@ -38,6 +38,27 @@ public class AuthorizationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
 
+        // If Enter is pressed on the keyboard when the username is focused, the password field is focused
+        authorizationTextUsername.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER) && authorizationTextUsername.isFocused()) {
+                authorizationTextPassword.requestFocus();
+            }
+        });
+
+        // If Enter is pressed on the keyboard, the button is clicked
+        authorizationShowPassword.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
+                authorizationButtonAccept.fire();
+            }
+        });
+
+        // If Enter is pressed on the keyboard, the button is clicked
+        authorizationTextPassword.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
+                authorizationButtonAccept.fire();
+            }
+        });
+
         // Log in users
         authorizationButtonAccept.setOnAction(event -> {
             if (!authorizationTextUsername.getText().isEmpty() && !authorizationTextPassword.getText().isEmpty()) {
