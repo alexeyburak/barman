@@ -14,6 +14,14 @@
 
 }
 
+/* Label in the changing data */
+.label-show-name {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-text-fill: gray;
+
+}
+
 /* AnchorPane style */
 .pane {
     -fx-background-color: linear-gradient(blue, black);

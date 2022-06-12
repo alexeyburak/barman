@@ -6,17 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.ChangeUsernameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="309.0" styleClass="pane" stylesheets="@style/authorization.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.ChangeUsernameController">
    <children>
-      <Label layoutX="68.0" layoutY="64.0" text="Change username" />
-      <Label fx:id="labelWrong" layoutX="140.0" layoutY="258.0" textFill="#d36262">
+      <Label layoutX="31.0" layoutY="39.0" stylesheets="@style/authorization.css" text="Change Username" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0" />
+      <Label fx:id="labelWrong" alignment="TOP_CENTER" layoutX="144.0" layoutY="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textFill="#d36262" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="210.0">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="newUsername" layoutX="74.0" layoutY="143.0" promptText="new username" />
-      <Button fx:id="buttonSafe" layoutX="55.0" layoutY="226.0" mnemonicParsing="false" text="safe" />
-      <Button fx:id="buttonBack" layoutX="167.0" layoutY="227.0" mnemonicParsing="false" text="back" />
-      <Label fx:id="labelOldUsername" layoutX="81.0" layoutY="101.0" text="Label" />
+      <TextField fx:id="newUsername" layoutX="40.0" layoutY="142.0" promptText="New username" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="135.0" />
+      <Button fx:id="buttonSafe" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Safe" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="255.0" />
+      <Button fx:id="buttonBack" layoutX="224.0" layoutY="240.0" mnemonicParsing="false" styleClass="btnBack" stylesheets="@style/authorization.css" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="255.0" />
+      <Label fx:id="labelOldUsername" layoutX="41.0" layoutY="90.0" prefHeight="25.0" prefWidth="55.0" styleClass="label-show-name" stylesheets="@style/authorization.css" text="user" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
    </children>
 </AnchorPane>

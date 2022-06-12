@@ -20,13 +20,13 @@ public class CheckPassword {
             labelWrong.setText("Fill all"); // If not all fields are filled in
             return false;
         } else if (password.length() < ACCEPTABLE_PASSWORD_LENGTH && passwordConfirm.length() < ACCEPTABLE_PASSWORD_LENGTH) {
-            labelWrong.setText("Short password"); // Check password length
+            labelWrong.setText("Short password!"); // Check password length
             return false;
         } else if (!password.equals(passwordConfirm)) {
-            labelWrong.setText("passwords don't match"); // Check password match
+            labelWrong.setText("Passwords don't match!"); // Check password match
             return false;
         } else if (isNumeric(password)) { // Checking whether a password is only a number
-            labelWrong.setText("the password must contain at least one letter");
+            labelWrong.setText("The password must contain at least one letter");
             return false;
         } else {
             return true;

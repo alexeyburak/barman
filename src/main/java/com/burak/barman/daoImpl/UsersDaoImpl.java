@@ -90,7 +90,7 @@ public class UsersDaoImpl extends AbstractDao implements IDao<User> {
 
                 user.setUsername(newUsername);
                 prepareStatement.executeUpdate();
-                labelWrong.setText("username has changed");
+                labelWrong.setText("Username has changed!");
             } catch (SQLException e) {
                 System.out.println("changeUsername error" + e);
             } finally {
@@ -145,8 +145,9 @@ public class UsersDaoImpl extends AbstractDao implements IDao<User> {
                 String retrievedPassword = resultSet.getString("password");
                 if (retrievedPassword.equals(oldPassword)) {
                     changePassword(newPassword);
+                    labelWrong.setText("Password has changed!");
                 } else {
-                    labelWrong.setText("you entered the wrong password");
+                    labelWrong.setText("You entered wrong password!");
                 }
             }
         } catch (SQLException e) {

@@ -35,7 +35,14 @@ public class ChangeUsernameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        labelOldUsername.setText("your username is " + user.getUsername());
+        labelOldUsername.setText("Your username: " + user.getUsername());
+
+        // If Enter is clicked
+        newUsername.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
+                buttonSafe.fire();
+            }
+        });
 
         buttonSafe.setOnAction(event -> {
             //changeUsername(newUsername.getText(), labelWrong);
