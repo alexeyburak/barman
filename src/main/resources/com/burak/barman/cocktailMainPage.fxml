@@ -38,6 +38,8 @@
                   <Label fx:id="preparation" text="ывавыа" />
                   <Label fx:id="name" text="авывы" />
                   <Label fx:id="recipe" text="Label" />
+                  <Button fx:id="buttonAddFavorites" mnemonicParsing="false" text="add to favorites" />
+                  <Button fx:id="buttonRemoveFavorites" mnemonicParsing="false" text="remove from favorites" />
                </children>
             </VBox>
          </center>

@@ -3,12 +3,14 @@ package com.burak.barman.daoImpl;
 
 import com.burak.barman.dao.AbstractDao;
 import com.burak.barman.dao.DataBase;
+import com.burak.barman.dao.IDao;
 import com.burak.barman.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 import java.sql.*;
+import java.util.Collection;
 
 import static com.burak.barman.ChangeScene.changeScene;
 
@@ -17,7 +19,7 @@ import static com.burak.barman.ChangeScene.changeScene;
  * Created by Alexey Burak
  */
 
-public class UsersDaoImpl extends AbstractDao {
+public class UsersDaoImpl extends AbstractDao implements IDao<User> {
 
     public static User user = new User();
 
@@ -251,5 +253,43 @@ public class UsersDaoImpl extends AbstractDao {
             }
         }
         return retrievedFavorites;
+    }
+
+    @Override
+    public void updateData(String favorites, User user) {
+        PreparedStatement prepareStatement= null;
+
+        try {
+            prepareStatement = getConnection().prepareStatement("UPDATE users SET favorites = ? WHERE username = ?");
+            prepareStatement.setString(1, favorites);
+            prepareStatement.setString(2, user.getUsername());
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("updateData error" + e);
+        } finally {
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+        }
+    }
+
+    @Override
+    public Collection<User> findAll() {
+        return null;
+    }
+
+    @Override
+    public Collection<User> findOne(String title) {
+        return null;
+    }
+
+    @Override
+    public Collection<User> findById(int id) {
+        return null;
     }
 }

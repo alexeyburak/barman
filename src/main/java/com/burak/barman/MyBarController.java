@@ -109,6 +109,7 @@ public class MyBarController implements Initializable {
         scroll.setVisible(true);
         List<Integer> listWithFavorites = getNumbersFromString(favorites);
         List<Cocktail> cocktails = new ArrayList<>();
+        System.out.println(user.getFavorites());
         for (Integer id : listWithFavorites) {
             cocktails.add(cocktailsDaoImpl.findById(id).iterator().next());
         }

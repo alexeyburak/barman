@@ -4,6 +4,7 @@ import com.burak.barman.dao.AbstractDao;
 import com.burak.barman.dao.DataBase;
 import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Cocktail;
+import com.burak.barman.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -170,5 +171,10 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
             }
         }
         return cocktails;
+    }
+
+    @Override
+    public void updateData(String favorites, User user) {
+
     }
 }
