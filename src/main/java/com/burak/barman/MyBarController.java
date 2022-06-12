@@ -39,7 +39,6 @@ public class MyBarController implements Initializable {
     @FXML GridPane grid;
     @FXML ScrollPane scroll;
     @FXML Label labelWrong;
-    private ICatchClicking onClick;
     private static final UsersDaoImpl usersDaoImpl;
     private static final CocktailsDaoImpl cocktailsDaoImpl;
     static {
@@ -121,7 +120,7 @@ public class MyBarController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // goToCocktail method after clicking on item
-        onClick = this::goToCocktail;
+        ICatchClicking onClick = this::goToCocktail;
 
         // Add all cocktails to the grid
         addToGrid(findFavorites(), grid, onClick);
