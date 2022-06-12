@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.MyBarController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.MyBarController">
+   <children>
+      <BorderPane layoutX="327.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Label" />
+                  <Button fx:id="buttonIngredients" mnemonicParsing="false" text="Ingredients" />
+                  <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
+                  <Button fx:id="buttonBack" mnemonicParsing="false" text="Back" />
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <HBox prefHeight="500.0" prefWidth="625.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scroll" prefHeight="500.0" prefWidth="557.0">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <HBox.margin>
+                        <Insets left="71.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </left>
+         <right>
+            <Label fx:id="labelWrong" prefHeight="143.0" prefWidth="503.0" text="Label" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font></Label>
+         </right></BorderPane>
+   </children>
+</AnchorPane>

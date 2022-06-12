@@ -15,6 +15,27 @@ import java.util.*;
 
 public class Tools {
 
+    // Remove the resulting number from the string
+    public static String removeNumber(String str, int number) {
+        int index = str.indexOf(number + ",");
+        if (str.length() == 1) {
+            return "";
+        }
+        if (index == -1) {
+            return str.replace("," + number, "");
+        }
+        return str.replace(number + ",", "");
+    }
+
+    // Add number to string
+    public static String addToString(String str, int number) {
+        if (str == null) {
+            return String.valueOf(number);
+        } else {
+            return str +","+ number;
+        }
+    }
+
     // Get numbers from string and return list of numbers which separated by comma
     public static List<Integer> getNumbersFromString(String string) {
         List<Integer> numbers = new ArrayList<>();

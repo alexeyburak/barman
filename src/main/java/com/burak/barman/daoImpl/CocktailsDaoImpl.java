@@ -4,6 +4,7 @@ import com.burak.barman.dao.AbstractDao;
 import com.burak.barman.dao.DataBase;
 import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Cocktail;
+import com.burak.barman.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -93,22 +94,35 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
     @Override
     public Collection<Cocktail> findOne(String title) {
         List<Cocktail> cocktails = new ArrayList<>();
+
+        // Used twice to work around problems arising from GROUP_CONCAT
+        // Used for id, preparation, img
+        PreparedStatement prepareStatementID = null;
+        // Used for name, recipe, recipeAmount
         PreparedStatement prepareStatement = null;
+        ResultSet resultSetID = null;
         ResultSet resultSet = null;
 
         try {
-            prepareStatement = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE name LIKE '" + title + "%'");
+            prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
+                    "LEFT JOIN recipe ON recipe.id_cocktail=cocktails.id LEFT " +
+                    "JOIN ingredients ON recipe.id_ingredient=ingredients.id  GROUP BY cocktails.id");
+            prepareStatementID = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE name LIKE '" + title + "%'");
             resultSet = prepareStatement.executeQuery();
+            resultSetID = prepareStatementID.executeQuery();
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String preparation = resultSet.getString("preparation");
-                String img = resultSet.getString("img");
+            while (resultSet.next() && resultSetID.next()) {
+                int id = resultSetID.getInt("id");
+                String name = resultSetID.getString("name");
+                String recipe = resultSet.getString("GROUP_CONCAT(recipe.id_ingredient)");
+                String recipeAmount = resultSet.getString("GROUP_CONCAT(recipe.amount)");
+                String preparation = resultSetID.getString("preparation");
+                String img = resultSetID.getString("img");
 
-                Cocktail cocktail = new Cocktail(id, name, null, preparation, null, img);
+                Cocktail cocktail = new Cocktail(id, name, recipe, preparation, recipeAmount, img);
 
                 cocktails.add(cocktail);
+
             }
         } catch (SQLException e) {
             System.out.println("findOne error " + e);
@@ -120,6 +134,13 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
                     System.out.println("error closing the stream " + e);
                 }
             }
+            if (prepareStatementID != null) {
+                try {
+                    prepareStatementID.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
             if (resultSet != null) {
                 try {
                     resultSet.close();
@@ -127,7 +148,87 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
                     System.out.println("error closing the stream " + e);
                 }
             }
+            if (resultSetID != null) {
+                try {
+                    resultSetID.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
         }
         return cocktails;
+    }
+
+    @Override
+    public Collection<Cocktail> findById(int id) {
+        List<Cocktail> cocktails = new ArrayList<>();
+
+        // Used twice to work around problems arising from GROUP_CONCAT
+        // Used for id, preparation, img
+        PreparedStatement prepareStatementID = null;
+        // Used for name, recipe, recipeAmount
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSetID = null;
+        ResultSet resultSet = null;
+
+        try {
+            prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
+                    "LEFT JOIN recipe ON recipe.id_cocktail=cocktails.id LEFT " +
+                    "JOIN ingredients ON recipe.id_ingredient=ingredients.id  GROUP BY cocktails.id");
+            prepareStatementID = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE id = ?");
+            prepareStatementID.setInt(1, id);
+            resultSet = prepareStatement.executeQuery();
+            resultSetID = prepareStatementID.executeQuery();
+
+            while (resultSet.next() && resultSetID.next()) {
+                String name = resultSetID.getString("name");
+                String recipe = resultSet.getString("GROUP_CONCAT(recipe.id_ingredient)");
+                String recipeAmount = resultSet.getString("GROUP_CONCAT(recipe.amount)");
+                String preparation = resultSetID.getString("preparation");
+                String img = resultSetID.getString("img");
+
+                Cocktail cocktail = new Cocktail(id, name, recipe, preparation, recipeAmount, img);
+
+                cocktails.add(cocktail);
+
+            }
+        } catch (SQLException e) {
+            System.out.println("findOne error " + e);
+        } finally {
+            if (prepareStatement != null) {
+                try {
+                    prepareStatement.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (prepareStatementID != null) {
+                try {
+                    prepareStatementID.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+            if (resultSetID != null) {
+                try {
+                    resultSetID.close();
+                } catch (SQLException e) {
+                    System.out.println("error closing the stream " + e);
+                }
+            }
+        }
+        return cocktails;
+    }
+
+    @Override
+    public void updateData(String favorites, User user) {
+
     }
 }

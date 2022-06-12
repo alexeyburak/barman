@@ -4,6 +4,7 @@ import com.burak.barman.dao.AbstractDao;
 import com.burak.barman.dao.DataBase;
 import com.burak.barman.dao.IDao;
 import com.burak.barman.models.Ingredient;
+import com.burak.barman.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -141,5 +142,9 @@ public class IngredientsDaoImpl extends AbstractDao implements IDao<Ingredient> 
             }
         }
         return ingredients;
+    }
+
+    @Override
+    public void updateData(String description, User user) {
     }
 }

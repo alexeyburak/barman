@@ -1,6 +1,7 @@
 package com.burak.barman;
 
 import com.burak.barman.daoImpl.IngredientsDaoImpl;
+import com.burak.barman.daoImpl.UsersDaoImpl;
 import com.burak.barman.models.Cocktail;
 import com.burak.barman.models.Ingredient;
 import javafx.fxml.FXML;
@@ -16,8 +17,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.burak.barman.ChangeScene.changeScene;
-import static com.burak.barman.utils.Tools.getImage;
+import static com.burak.barman.daoImpl.UsersDaoImpl.user;
 import static com.burak.barman.utils.Tools.getNumbersFromString;
+import static com.burak.barman.utils.Tools.removeNumber;
+import static com.burak.barman.utils.Tools.addToString;
+import static com.burak.barman.utils.Tools.getImage;
 
 /**
  * Barman
@@ -31,17 +35,23 @@ public class CocktailMainPageController implements Initializable {
     @FXML private Button buttonBack;
     @FXML private Button buttonConstructor;
     @FXML private Button buttonIngredients;
+    @FXML private Button buttonAddFavorites;
+    @FXML private Button buttonRemoveFavorites;
     @FXML private Label name;
     @FXML private Label preparation;
     @FXML private Label recipe;
     @FXML private ImageView img;
+    private Cocktail cocktail;
+    private static final UsersDaoImpl usersDaoImpl;
     private static final IngredientsDaoImpl ingredientsDao;
     static {
+        usersDaoImpl = new UsersDaoImpl();
         ingredientsDao = new IngredientsDaoImpl();
     }
 
     // Set data to labels
     public void setData(final Cocktail cocktail) {
+        this.cocktail = cocktail;
         List<Integer> listIngredients = getNumbersFromString(cocktail.getRecipe());
         List<Integer> listAmount = getNumbersFromString(cocktail.getRecipe_amount());
         List<String> listNames = new ArrayList<>();
@@ -55,10 +65,42 @@ public class CocktailMainPageController implements Initializable {
         String path = "./src/main/resources/com/burak/barman/images/" + cocktail.getImg();
         img.setImage(getImage(path));
         recipe.setText(listNames.toString());
+        changeButtonVisibility(cocktail);
+    }
+
+    private void changeButtonVisibility(Cocktail cocktail) {
+        if (user.getFavorites() == null) {
+            buttonAddFavorites.setVisible(true);
+            buttonRemoveFavorites.setVisible(false);
+            return;
+        }
+        if (user.getFavorites().contains(cocktail.getId() + "")) {
+            buttonAddFavorites.setVisible(false);
+            buttonRemoveFavorites.setVisible(true);
+        } else {
+            buttonAddFavorites.setVisible(true);
+            buttonRemoveFavorites.setVisible(false);
+        }
+    }
+
+    private void updateDao(String updateString) {
+        usersDaoImpl.updateData(updateString, user);
+        user.setFavorites(updateString);
+        changeButtonVisibility(cocktail);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        buttonRemoveFavorites.setOnAction(actionEvent -> {
+            String updateString = removeNumber(user.getFavorites(), cocktail.getId());
+            updateDao(updateString);
+        });
+
+        buttonAddFavorites.setOnAction(event -> {
+            String updateString = addToString(user.getFavorites(), cocktail.getId());
+            updateDao(updateString);
+        });
 
         // Go to main page
         buttonBack.setOnAction(event -> changeScene(event, "mainStage.fxml"));
