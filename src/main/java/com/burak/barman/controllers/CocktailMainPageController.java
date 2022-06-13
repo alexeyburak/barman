@@ -1,4 +1,4 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
 import com.burak.barman.daoImpl.IngredientsDaoImpl;
 import com.burak.barman.daoImpl.UsersDaoImpl;

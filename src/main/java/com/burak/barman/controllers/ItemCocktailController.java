@@ -1,4 +1,4 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
 import com.burak.barman.models.Cocktail;
 import com.burak.barman.utils.ICatchClicking;
@@ -18,7 +18,7 @@ import static com.burak.barman.utils.Tools.getImage;
  * Created by Alexey Burak
  */
 
-public class ItemCocktail implements Initializable {
+public class ItemCocktailController implements Initializable {
 
     @FXML private Label name;
     @FXML private ImageView img;

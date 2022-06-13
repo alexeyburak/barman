@@ -5,6 +5,8 @@ package com.burak.barman;
  * Created by Alexey Burak
  */
 
+import com.burak.barman.controllers.CocktailMainPageController;
+import com.burak.barman.controllers.ItemCocktailController;
 import com.burak.barman.daoImpl.CocktailsDaoImpl;
 import com.burak.barman.models.Cocktail;
 import com.burak.barman.utils.ICatchClicking;
@@ -63,7 +65,7 @@ public class MainStageController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                ItemCocktail itemController = fxmlLoader.getController();
+                ItemCocktailController itemController = fxmlLoader.getController();
                 Cocktail cocktail = cocktails.get(i);
                 itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);

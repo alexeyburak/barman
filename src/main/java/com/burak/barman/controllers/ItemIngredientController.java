@@ -1,6 +1,5 @@
-package com.burak.barman;
+package com.burak.barman.controllers;
 
-import com.burak.barman.models.Cocktail;
 import com.burak.barman.models.Ingredient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +14,7 @@ import java.util.ResourceBundle;
  * Created by Alexey Burak
  */
 
-public class ItemIngredient implements Initializable {
+public class ItemIngredientController implements Initializable {
 
     @FXML Label name;
     @FXML Label category;

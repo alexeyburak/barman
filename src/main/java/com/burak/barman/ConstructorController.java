@@ -1,5 +1,7 @@
 package com.burak.barman;
 
+import com.burak.barman.controllers.CocktailMainPageController;
+import com.burak.barman.controllers.ItemCocktailController;
 import com.burak.barman.daoImpl.CocktailsDaoImpl;
 import com.burak.barman.models.Cocktail;
 import com.burak.barman.utils.ICatchClicking;
@@ -59,7 +61,7 @@ public class ConstructorController implements Initializable  {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                ItemCocktail itemController = fxmlLoader.getController();
+                ItemCocktailController itemController = fxmlLoader.getController();
                 itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);
                 if (column == 4) {

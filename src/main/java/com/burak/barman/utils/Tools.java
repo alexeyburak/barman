@@ -29,7 +29,7 @@ public class Tools {
 
     // Add number to string
     public static String addToString(String str, int number) {
-        if (str == null) {
+        if (str == null || str.equals("")) {
             return String.valueOf(number);
         } else {
             return str +","+ number;

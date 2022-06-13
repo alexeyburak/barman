@@ -1,5 +1,6 @@
 package com.burak.barman;
 
+import com.burak.barman.controllers.ItemIngredientController;
 import com.burak.barman.daoImpl.IngredientsDaoImpl;
 import com.burak.barman.models.Ingredient;
 import javafx.fxml.FXML;
@@ -54,7 +55,7 @@ public class IngredientController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemIngredient.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                ItemIngredient itemIngredient = fxmlLoader.getController();
+                ItemIngredientController itemIngredient = fxmlLoader.getController();
                 itemIngredient.setData(ingredient);
                 grid.add(anchorPane, column++, row);
                 if (column == 4) {
