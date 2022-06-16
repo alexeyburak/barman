@@ -1,0 +1,57 @@
+/* AnchorPane style */
+.pane {
+    -fx-background-color: linear-gradient(#383586, black);
+}
+
+/* The main label shows Join and Login */
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 35;
+    -fx-text-fill: white;
+
+}
+
+/* Label in the bottom */
+.label-small {
+    -fx-font-family: "Arial";
+    -fx-font-size: 20;
+    -fx-text-fill: #a4a4a4;
+
+}
+
+
+/* Label in the bottom */
+.label-recipe {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-text-fill: #858383;
+
+}
+
+/* Button back to authorization */
+.btnAdd {
+    -fx-text-fill: #30ce26;
+    -fx-background-color: black;
+    -fx-border-radius: 50;
+    -fx-background-radius: 20;
+    -fx-opacity: 0.7;
+}
+
+/* Button back hover */
+.btnAdd:hover {
+    -fx-text-fill: #15ff00;
+}
+
+/* Button back to authorization */
+.btnRemove {
+    -fx-text-fill: #d72222;
+    -fx-background-color: black;
+    -fx-border-radius: 50;
+
+    -fx-opacity: 0.7;
+}
+
+/* Button back hover */
+.btnRemove:hover {
+    -fx-text-fill: #ff0000;
+}

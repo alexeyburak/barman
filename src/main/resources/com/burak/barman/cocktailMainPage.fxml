@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -7,39 +8,88 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.CocktailMainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="pane" stylesheets="@style/mainScenes.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.CocktailMainPageController">
    <children>
       <BorderPane layoutX="400.0" layoutY="72.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="70.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Label" />
-                  <Button fx:id="buttonMyBar" mnemonicParsing="false" text="My Bar" />
-                  <Button fx:id="buttonIngredients" mnemonicParsing="false" text="Ingredients" />
-                  <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
-                  <Button fx:id="buttonBack" mnemonicParsing="false" text="Back" />
+                  <Label styleClass="icon" stylesheets="@style/top.css" text="Barman">
+                     <HBox.margin>
+                        <Insets left="25.0" top="5.0" />
+                     </HBox.margin></Label>
+                  <Button fx:id="buttonMyBar" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="My Bar" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="435.0" top="25.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="buttonIngredients" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Ingredients">
+                     <HBox.margin>
+                        <Insets left="20.0" top="25.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="buttonConstructor" mnemonicParsing="false" prefHeight="30.0" prefWidth="92.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Constructor">
+                     <HBox.margin>
+                        <Insets left="20.0" top="25.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Back">
+                     <HBox.margin>
+                        <Insets left="20.0" top="25.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </top>
          <left>
             <HBox prefHeight="400.0" prefWidth="389.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="img" fitHeight="380.0" fitWidth="385.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="img" fitHeight="358.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="50.0" right="25.0" top="25.0" />
+                     </HBox.margin></ImageView>
                </children>
             </HBox>
          </left>
          <bottom>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <HBox prefHeight="35.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="447.0" prefWidth="483.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="preparation" text="ывавыа" />
-                  <Label fx:id="name" text="авывы" />
-                  <Label fx:id="recipe" text="Label" />
-                  <Button fx:id="buttonAddFavorites" mnemonicParsing="false" text="add to favorites" />
-                  <Button fx:id="buttonRemoveFavorites" mnemonicParsing="false" text="remove from favorites" />
+                  <Label fx:id="name" alignment="CENTER" prefHeight="41.0" prefWidth="394.0" stylesheets="@style/mainScenes.css" text="Mojito">
+                     <VBox.margin>
+                        <Insets left="80.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="preparation" alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString="" lineSpacing="1.0" prefHeight="180.0" prefWidth="586.0" styleClass="label-small" stylesheets="@style/mainScenes.css" textOverrun="CLIP">
+                     <VBox.margin>
+                        <Insets left="10.0" top="30.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding></Label>
+                  <Label styleClass="label-small" stylesheets="@style/mainScenes.css" text="Ingredients:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="recipe" alignment="TOP_LEFT" ellipsisString=".." lineSpacing="2.0" prefHeight="94.0" prefWidth="573.0" styleClass="label-recipe" stylesheets="@style/mainScenes.css" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="10.0" top="26.0" />
+                     </VBox.margin></Label>
+                  <Button fx:id="buttonAddFavorites" mnemonicParsing="false" prefHeight="39.0" prefWidth="210.0" styleClass="btnAdd" stylesheets="@style/mainScenes.css" text="Add to favorites">
+                     <VBox.margin>
+                        <Insets left="211.0" top="56.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+                  <Button fx:id="buttonRemoveFavorites" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="227.0" styleClass="btnRemove" stylesheets="@style/mainScenes.css" text="Remove from favorites">
+                     <VBox.margin>
+                        <Insets left="192.0" top="-39.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
                </children>
             </VBox>
          </center>

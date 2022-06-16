@@ -1,0 +1,19 @@
+/* Label in the bottom */
+.icon {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 40;
+    -fx-text-fill: #000000;
+}
+
+/* Button Sign up and Login */
+.buttonMenu {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-color: #000000;
+    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+}
+
+.buttonMenu:hover {
+    -fx-background-color: #111149;
+}

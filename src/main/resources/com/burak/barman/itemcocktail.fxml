@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="165.0" prefWidth="160.0" style="-fx-background-color: blue;" styleClass="grid" stylesheets="@style/item.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.ItemCocktailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="165.0" prefWidth="160.0" style="-fx-background-color: blue;" styleClass="grid" stylesheets="@style/mainScenes.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.controllers.ItemCocktailController">
    <children>
       <VBox alignment="CENTER" layoutX="35.0" prefHeight="155.0" prefWidth="182.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -16,7 +16,7 @@
                   <Insets bottom="14.0" top="13.0" />
                </VBox.margin>
             </ImageView>
-            <Label fx:id="name" alignment="TOP_CENTER" prefHeight="28.0" prefWidth="187.0" text="Cocktail Name" textAlignment="CENTER">
+            <Label fx:id="name" alignment="TOP_CENTER" prefHeight="28.0" prefWidth="187.0" styleClass="label-small" stylesheets="@style/mainScenes.css" text="Cocktail Name" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>

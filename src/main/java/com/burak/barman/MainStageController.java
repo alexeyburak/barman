@@ -137,6 +137,7 @@ public class MainStageController implements Initializable {
 
         // Print greeting
         labelSayHi.setText(getRandom(greeting));
+        labelSayHi.setWrapText(true);
 
         // Go to Ingredient Scene
         buttonIngredient.setOnAction(event -> changeScene(event, "ingredient.fxml"));

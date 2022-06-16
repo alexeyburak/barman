@@ -58,14 +58,23 @@ public class CocktailMainPageController implements Initializable {
         Collection<Ingredient> findId;
         for (int i = 0; i < listIngredients.size(); i++) {
             findId = ingredientsDao.findById(listIngredients.get(i));
-            listNames.add(findId.iterator().next().getTitle() + "\t\t" + listAmount.get(i) + "ml\n");
+            listNames.add(String.format(" %-100s %s%s\n", findId.iterator().next().getTitle(), listAmount.get(i), "ml"));
         }
         name.setText(cocktail.getName());
         preparation.setText(cocktail.getPreparation());
+        preparation.setWrapText(true);
         String path = "./src/main/resources/com/burak/barman/images/" + cocktail.getImg();
         img.setImage(getImage(path));
-        recipe.setText(listNames.toString());
+        setTextFromList(recipe, listNames);
         changeButtonVisibility(cocktail);
+    }
+
+    public void setTextFromList(Label label, List<String> list) {
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) {
+            sb.append(s);
+        }
+        label.setText(sb.toString());
     }
 
     private void changeButtonVisibility(Cocktail cocktail) {
