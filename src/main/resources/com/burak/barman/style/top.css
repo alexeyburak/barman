@@ -1,11 +1,18 @@
-/* Label in the bottom */
+/* Icon label */
 .icon {
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 40;
-    -fx-text-fill: #000000;
+    -fx-text-fill: black;
 }
 
-/* Button Sign up and Login */
+/* Icon label */
+.icon-small {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 18;
+    -fx-text-fill: black;
+}
+
+/* Buttons to navigate on the system */
 .buttonMenu {
     -fx-text-fill: white;
     -fx-font-family: "Arial";
@@ -14,6 +21,38 @@
     -fx-background-radius: 10;
 }
 
+/* Buttons hover */
 .buttonMenu:hover {
     -fx-background-color: #111149;
 }
+
+/* Combo-box Account */
+.combo-box-base
+{
+    -fx-background-color: black;
+    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: black;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: #111149;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base:hover
+{
+    -fx-background-color: #111149;
+}
+
+.combo-box-base:showing
+{
+    -fx-background-color: #01013a;
+}
+

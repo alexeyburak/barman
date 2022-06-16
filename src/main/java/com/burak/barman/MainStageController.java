@@ -75,7 +75,7 @@ public class MainStageController implements Initializable {
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(5, 5, 5, 5));
+                GridPane.setMargin(anchorPane, new Insets(0, 15, 0, 10));
             }
         } catch (IOException e) {
             e.printStackTrace();

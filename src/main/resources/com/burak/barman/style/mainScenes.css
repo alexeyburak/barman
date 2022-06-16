@@ -3,7 +3,7 @@
     -fx-background-color: linear-gradient(#383586, black);
 }
 
-/* The main label shows Join and Login */
+/* The main label */
 .label {
     -fx-font-family: "Arial";
     -fx-font-size: 35;
@@ -11,7 +11,7 @@
 
 }
 
-/* Label in the bottom */
+/* Small Labels */
 .label-small {
     -fx-font-family: "Arial";
     -fx-font-size: 20;
@@ -19,8 +19,7 @@
 
 }
 
-
-/* Label in the bottom */
+/* Label shows recipe */
 .label-recipe {
     -fx-font-family: "Arial";
     -fx-font-size: 15;
@@ -28,7 +27,61 @@
 
 }
 
-/* Button back to authorization */
+/* Label recommended */
+.label-recommended {
+    -fx-font-family: "Arial";
+    -fx-font-size: 30;
+    -fx-text-fill: #e1e0e0;
+}
+
+/* Label email */
+.label-email {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-text-fill: #4781ff;
+}
+
+/* email hover */
+.label-email:hover {
+    -fx-text-fill: #004fef;
+}
+
+/* Label in bottom part */
+.label-bottom {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-text-fill: gray;
+}
+
+/* Label show username */
+.label-say-name {
+    -fx-font-family: "Arial";
+    -fx-font-size: 40;
+    -fx-text-fill: white;
+}
+
+/* Label shows phrases */
+.label-say-hi {
+    -fx-font-family: "Arial";
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+}
+
+/* Button go the GitHub */
+.btnGitHub {
+    -fx-text-fill: #4781ff;
+    -fx-background-color: black;
+    -fx-border-radius: 50;
+    -fx-background-radius: 20;
+    -fx-opacity: 1;
+}
+
+/* Button GitHub hover */
+.btnGitHub:hover {
+    -fx-text-fill: #004fef;
+}
+
+/* Button add to favorites */
 .btnAdd {
     -fx-text-fill: #30ce26;
     -fx-background-color: black;
@@ -37,12 +90,12 @@
     -fx-opacity: 0.7;
 }
 
-/* Button back hover */
+/* Button add to favorites hover */
 .btnAdd:hover {
     -fx-text-fill: #15ff00;
 }
 
-/* Button back to authorization */
+/* Button remove from favorites */
 .btnRemove {
     -fx-text-fill: #d72222;
     -fx-background-color: black;
@@ -51,7 +104,7 @@
     -fx-opacity: 0.7;
 }
 
-/* Button back hover */
+/* Button remove from favorites hover */
 .btnRemove:hover {
     -fx-text-fill: #ff0000;
 }
