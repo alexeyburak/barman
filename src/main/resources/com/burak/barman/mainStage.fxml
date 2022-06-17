@@ -16,14 +16,14 @@
    <BorderPane layoutX="288.0" layoutY="134.0" prefHeight="266.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <top>
          <HBox prefHeight="70.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-            <VBox prefHeight="70.0" prefWidth="231.0">
+            <VBox prefHeight="70.0" prefWidth="240.0">
                <children>
                   <Label prefHeight="56.0" prefWidth="150.0" styleClass="icon" stylesheets="@style/top.css" text="Barman">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label prefHeight="28.0" prefWidth="205.0" styleClass="icon-small" stylesheets="@style/top.css" text="make your own cocktails">
+                  <Label prefHeight="28.0" prefWidth="214.0" styleClass="icon-small" stylesheets="@style/top.css" text="make your own cocktails">
                      <VBox.margin>
                         <Insets left="22.0" top="-13.0" />
                      </VBox.margin>
@@ -32,7 +32,7 @@
             </VBox>
             <Button fx:id="buttonMyBar" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="My bar">
                <HBox.margin>
-                  <Insets left="315.0" top="20.0" />
+                  <Insets left="307.0" top="20.0" />
                </HBox.margin></Button>
             <Button fx:id="buttonIngredient" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Ingredient">
                <HBox.margin>

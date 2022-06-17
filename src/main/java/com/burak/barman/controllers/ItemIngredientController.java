@@ -22,7 +22,9 @@ public class ItemIngredientController implements Initializable {
 
     public void setData(Ingredient ingredient) {
         name.setText(ingredient.getTitle());
+        name.setWrapText(true);
         category.setText("Category: "+ ingredient.getCategory());
+        category.setWrapText(true);
         fortress.setText("Fortress: " + ingredient.getFortress());
     }
 

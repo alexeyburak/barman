@@ -1,6 +1,6 @@
 /* AnchorPane style */
 .pane {
-    -fx-background-color: linear-gradient(#383586, black);
+    -fx-background-color: linear-gradient(#3d3a94, black);
 }
 
 /* The main label */
@@ -107,4 +107,47 @@
 /* Button remove from favorites hover */
 .btnRemove:hover {
     -fx-text-fill: #ff0000;
+}
+
+/* Grid pane */
+.grid-pane {
+    -fx-background-color: linear-gradient(#383586, black);
+}
+
+/* Scroll pane */
+.scroll-pane {
+    -fx-background-color: linear-gradient(#383586, black);
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: linear-gradient(#383586, black);
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: black;
+    -fx-border-color: black;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: linear-gradient(#383586, black);
+    -fx-border-color: black;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #323248;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+/* Label shows empty description */
+.label-emptyFavorites {
+    -fx-font-family: "Arial";
+    -fx-font-size: 32;
+    -fx-text-fill: #b7b6b6;
 }

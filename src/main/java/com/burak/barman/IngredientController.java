@@ -11,9 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -68,7 +66,7 @@ public class IngredientController implements Initializable {
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPadding(new Insets(10, 10, 10, 10));
+                grid.setPadding(new Insets(0, 10, 10, 10));
                 grid.setVgap(10);
                 grid.setHgap(10);
             }

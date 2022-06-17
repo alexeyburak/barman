@@ -98,7 +98,7 @@ public class MyBarController implements Initializable {
 
     private void emptyFavorites() {
         scroll.setVisible(false);
-        labelWrong.setText("You don't have any favorites!");
+        labelWrong.setText("You don't have favorites yet!\nPlease add them in the constructor");
     }
 
     private List<Cocktail> findFavorites() {
@@ -107,6 +107,7 @@ public class MyBarController implements Initializable {
             emptyFavorites();
             return new ArrayList<>();
         }
+        labelWrong.setVisible(false);
         scroll.setVisible(true);
         List<Integer> listWithFavorites = getNumbersFromString(favorites);
         List<Cocktail> cocktails = new ArrayList<>();

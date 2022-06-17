@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,32 +11,44 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.IngredientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="pane" stylesheets="@style/mainScenes.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.IngredientController">
    <children>
-      <ScrollPane layoutX="33.0" layoutY="93.0" prefHeight="476.0" prefWidth="668.0">
+      <ScrollPane layoutX="45.0" layoutY="82.0" prefHeight="478.0" prefWidth="670.0" stylesheets="@style/mainScenes.css">
          <content>
-            <GridPane fx:id="grid" prefHeight="3.0" prefWidth="7.0">
+            <GridPane fx:id="grid" prefHeight="3.0" prefWidth="7.0" styleClass="grid-pane" stylesheets="@style/mainScenes.css">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
-      <HBox layoutX="34.0" layoutY="10.0" prefHeight="83.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="34.0" layoutY="10.0" prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="icon">
+            <Label styleClass="icon" stylesheets="@style/top.css" text="Barman">
                <font>
                   <Font size="28.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="20.0" top="5.0" />
+               </HBox.margin>
             </Label>
-            <Button fx:id="buttonMyBar" mnemonicParsing="false" text="My Bar" />
-            <Button fx:id="buttonConstructor" mnemonicParsing="false" text="Constructor" />
-            <Button fx:id="buttonBack" mnemonicParsing="false" text="Back" />
+            <Button fx:id="buttonMyBar" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="My Bar">
+               <HBox.margin>
+                  <Insets left="552.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonConstructor" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Constructor">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Back">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
-      <TextField fx:id="findTextField" layoutX="774.0" layoutY="146.0" promptText="write title" />
-      <Button fx:id="findButton" layoutX="789.0" layoutY="210.0" mnemonicParsing="false" text="find" />
-      <Button fx:id="showAllButton" layoutX="865.0" layoutY="210.0" mnemonicParsing="false" text="show all" />
+      <TextField fx:id="findTextField" layoutX="755.0" layoutY="86.0" prefHeight="27.0" prefWidth="207.0" promptText="For example, vodka" styleClass="text" stylesheets="@style/authorization.css" />
+      <Button fx:id="findButton" layoutX="755.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" />
+      <Button fx:id="showAllButton" layoutX="885.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show all" />
       <Label fx:id="labelWrong" layoutX="839.0" layoutY="274.0" textFill="#d76666">
          <font>
             <Font size="16.0" />

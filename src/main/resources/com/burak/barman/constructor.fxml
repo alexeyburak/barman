@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,29 +11,41 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.ConstructorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="pane" stylesheets="@style/mainScenes.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.ConstructorController">
    <children>
-      <HBox prefHeight="97.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Label" />
-            <Button fx:id="buttonMyBar" mnemonicParsing="false" text="MyBar" />
-            <Button fx:id="buttonIngredients" mnemonicParsing="false" text="Ingredients" />
-            <Button fx:id="buttonBack" mnemonicParsing="false" text="Back" />
+            <Label styleClass="icon" stylesheets="@style/top.css" text="Barman">
+               <HBox.margin>
+                  <Insets left="20.0" top="5.0" />
+               </HBox.margin></Label>
+            <Button fx:id="buttonMyBar" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="MyBar">
+               <HBox.margin>
+                  <Insets left="560.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonIngredients" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Ingredients">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" styleClass="buttonMenu" stylesheets="@style/top.css" text="Back">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
-      <ScrollPane layoutX="36.0" layoutY="99.0" prefHeight="475.0" prefWidth="720.0">
+      <ScrollPane layoutX="36.0" layoutY="99.0" prefHeight="475.0" prefWidth="710.0" stylesheets="@style/mainScenes.css">
          <content>
-            <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+            <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0" styleClass="grid-pane" stylesheets="@style/mainScenes.css">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="findTextField" layoutX="775.0" layoutY="99.0" prefHeight="26.0" prefWidth="203.0" promptText="For example, sex on the beach" />
-      <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Find" />
-      <Button fx:id="buttonShowAll" layoutX="900.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Show All" />
-      <Label fx:id="labelWrong" alignment="TOP_CENTER" layoutX="856.0" layoutY="232.0" textAlignment="CENTER" textFill="#d31515">
+      <TextField fx:id="findTextField" layoutX="775.0" layoutY="99.0" prefHeight="27.0" prefWidth="201.0" promptText="For example, sex on the beach" styleClass="text" stylesheets="@style/authorization.css" />
+      <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" />
+      <Button fx:id="buttonShowAll" layoutX="900.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show All" />
+      <Label fx:id="labelWrong" alignment="TOP_CENTER" layoutX="792.0" layoutY="231.0" prefHeight="25.0" prefWidth="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#d31515" AnchorPane.leftAnchor="780.0" AnchorPane.rightAnchor="27.0">
          <font>
             <Font size="18.0" />
          </font>

@@ -1,13 +1,13 @@
 /* Icon label */
 .icon {
-    -fx-font-family: "Comic Sans MS";
+    -fx-font: normal bold 20px "Comic Sans MS";
     -fx-font-size: 40;
     -fx-text-fill: black;
 }
 
 /* Icon label */
 .icon-small {
-    -fx-font-family: "Comic Sans MS";
+    -fx-font: bold 10px "Comic Sans MS";
     -fx-font-size: 18;
     -fx-text-fill: black;
 }
