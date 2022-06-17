@@ -9,11 +9,10 @@ public class Cocktail {
 
     private final int id;
     private String name;
-    private String recipe;
-    private String preparation;
-    private String recipe_amount;
-    private String img;
-
+    private final String recipe;
+    private final String preparation;
+    private final String recipe_amount;
+    private final String img;
 
     public Cocktail(int id, String name, String recipe, String preparation, String recipe_amount, String img) {
         this.id = id;
@@ -36,32 +35,16 @@ public class Cocktail {
         return recipe;
     }
 
-    public void setRecipe(String recipe) {
-        this.recipe = recipe;
-    }
-
     public String getPreparation() {
         return preparation;
-    }
-
-    public void setPreparation(String preparation) {
-        this.preparation = preparation;
     }
 
     public String getRecipe_amount() {
         return recipe_amount;
     }
 
-    public void setRecipe_amount(String recipe_amount) {
-        this.recipe_amount = recipe_amount;
-    }
-
     public String getImg() {
         return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     public int getId() {

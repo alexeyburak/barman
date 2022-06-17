@@ -8,9 +8,9 @@ package com.burak.barman.models;
 public class Ingredient {
 
     private int id;
-    private String title;
-    private int fortress;
-    private String category;
+    private final String title;
+    private final int fortress;
+    private final String category;
 
     public Ingredient(String title, int id, int fortress, String category) {
         this.title = title;

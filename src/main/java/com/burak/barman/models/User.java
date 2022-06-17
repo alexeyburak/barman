@@ -8,7 +8,6 @@ package com.burak.barman.models;
 public class User {
 
     private String username;
-
     private String favorites;
 
     public User() {
