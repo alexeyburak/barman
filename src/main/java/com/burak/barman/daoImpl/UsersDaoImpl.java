@@ -40,7 +40,7 @@ public class UsersDaoImpl extends AbstractDao implements IDao<User> {
             resultSet = psCheckUserExists.executeQuery();
 
             if (resultSet.isBeforeFirst()) {
-                labelWrong.setText("User exists");
+                labelWrong.setText("The user already exists!");
             } else {
                 psInsert = getConnection().prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
                 psInsert.setString(1, username);
@@ -181,7 +181,7 @@ public class UsersDaoImpl extends AbstractDao implements IDao<User> {
             resultSet = prepareStatement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
-                labelWrong.setText("There is no account");
+                labelWrong.setText("There is no account!");
                 passwordField.clear();
             } else {
                 while (resultSet.next()) {
@@ -193,7 +193,7 @@ public class UsersDaoImpl extends AbstractDao implements IDao<User> {
                         System.out.println(user.toString() + " logIn system");
                         changeScene(event, "mainStage.fxml");
                     } else {
-                        labelWrong.setText("Pass didnt match");
+                        labelWrong.setText("You entered the wrong password!");
                         passwordField.clear();
                     }
                 }

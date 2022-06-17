@@ -17,7 +17,7 @@ public class CheckPassword {
     public static boolean checkInput(String password, String passwordConfirm, String username, Label labelWrong) {
 
         if (password.trim().isEmpty() && username != null) {
-            labelWrong.setText("Fill all"); // If not all fields are filled in
+            labelWrong.setText("Please, fill in all fields!"); // If not all fields are filled in
             return false;
         } else if (password.length() < ACCEPTABLE_PASSWORD_LENGTH && passwordConfirm.length() < ACCEPTABLE_PASSWORD_LENGTH) {
             labelWrong.setText("Short password!"); // Check password length

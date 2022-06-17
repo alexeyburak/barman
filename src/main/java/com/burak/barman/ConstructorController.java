@@ -41,6 +41,7 @@ public class ConstructorController implements Initializable  {
     @FXML private Button buttonFind;
     @FXML private TextField findTextField;
     @FXML private Label labelWrong;
+    @FXML private Label icon;
     @FXML private GridPane grid;
     private ICatchClicking onClick;
     private static final CocktailsDaoImpl cocktailsDao;
@@ -74,7 +75,7 @@ public class ConstructorController implements Initializable  {
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPadding(new Insets(10, 10, 10, 10));
+                grid.setPadding(new Insets(0, 10, 10, 10));
                 grid.setVgap(10);
                 grid.setHgap(10);
             }
@@ -102,6 +103,11 @@ public class ConstructorController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // If icon is clicked, go to the main page
+        icon.setOnMouseClicked(event -> {
+            buttonBack.fire();
+        });
 
         // goToCocktail method after clicking on item
         onClick = this::goToCocktail;

@@ -14,7 +14,7 @@
    <children>
       <HBox prefHeight="70.0" prefWidth="1000.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="icon" stylesheets="@style/top.css" text="My Bar">
+            <Label fx:id="icon" styleClass="icon" stylesheets="@style/top.css" text="My Bar">
                <HBox.margin>
                   <Insets left="20.0" top="4.0" />
                </HBox.margin></Label>

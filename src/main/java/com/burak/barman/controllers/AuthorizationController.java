@@ -74,7 +74,7 @@ public class AuthorizationController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                authorizationLabelWrong.setText("Fill ALL!");
+                authorizationLabelWrong.setText("Please, fill in all fields!");
                 authorizationShowPassword.clear();
                 authorizationTextPassword.clear();
             }

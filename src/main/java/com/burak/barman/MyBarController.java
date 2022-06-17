@@ -41,6 +41,7 @@ public class MyBarController implements Initializable {
     @FXML GridPane grid;
     @FXML ScrollPane scroll;
     @FXML Label labelWrong;
+    @FXML Label icon;
     private static final UsersDaoImpl usersDaoImpl;
     private static final CocktailsDaoImpl cocktailsDaoImpl;
     static {
@@ -120,6 +121,11 @@ public class MyBarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // If icon is clicked, go to the main page
+        icon.setOnMouseClicked(event -> {
+            buttonBack.fire();
+        });
 
         // goToCocktail method after clicking on item
         ICatchClicking onClick = this::goToCocktail;

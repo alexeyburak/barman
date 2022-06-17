@@ -5,6 +5,11 @@
     -fx-background-radius: 15;
 }
 
+/* AnchorPane cocktail hover */
+.pane:hover {
+    -fx-background-color: #3221b4;
+}
+
 /* name of the cocktail */
 .name {
     -fx-font-family: "Arial";
@@ -31,4 +36,9 @@
     -fx-background-color: #3d53b4;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+}
+
+/* AnchorPane ingredient hover */
+.pane-ingredient:hover {
+    -fx-background-color: #4665e0;
 }

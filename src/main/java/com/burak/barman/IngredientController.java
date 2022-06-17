@@ -33,6 +33,7 @@ public class IngredientController implements Initializable {
     @FXML private Button findButton;
     @FXML private Button showAllButton;
     @FXML private Label labelWrong;
+    @FXML private Label icon;
     @FXML private TextField findTextField;
     @FXML private GridPane grid;
 
@@ -76,6 +77,11 @@ public class IngredientController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // If icon is clicked, go to the main page
+        icon.setOnMouseClicked(event -> {
+           buttonBack.fire();
+        });
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {

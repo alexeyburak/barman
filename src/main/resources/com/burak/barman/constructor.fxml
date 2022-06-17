@@ -15,7 +15,7 @@
    <children>
       <HBox prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="icon" stylesheets="@style/top.css" text="Barman">
+            <Label fx:id="icon" styleClass="icon" stylesheets="@style/top.css" text="Barman">
                <HBox.margin>
                   <Insets left="20.0" top="5.0" />
                </HBox.margin></Label>
@@ -33,7 +33,7 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <ScrollPane layoutX="36.0" layoutY="99.0" prefHeight="475.0" prefWidth="710.0" stylesheets="@style/mainScenes.css">
+      <ScrollPane layoutX="292.0" layoutY="100.0" prefHeight="475.0" prefWidth="710.0" stylesheets="@style/mainScenes.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="85.0">
          <content>
             <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0" styleClass="grid-pane" stylesheets="@style/mainScenes.css">
               <rowConstraints>
@@ -42,10 +42,10 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="findTextField" layoutX="775.0" layoutY="99.0" prefHeight="27.0" prefWidth="201.0" promptText="For example, sex on the beach" styleClass="text" stylesheets="@style/authorization.css" />
-      <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" />
-      <Button fx:id="buttonShowAll" layoutX="900.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show All" />
-      <Label fx:id="labelWrong" alignment="TOP_CENTER" layoutX="792.0" layoutY="231.0" prefHeight="25.0" prefWidth="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#d31515" AnchorPane.leftAnchor="780.0" AnchorPane.rightAnchor="27.0">
+      <TextField fx:id="findTextField" layoutX="23.0" layoutY="86.0" prefHeight="27.0" prefWidth="201.0" promptText="For example, sex on the beach" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="759.0" AnchorPane.topAnchor="85.0" />
+      <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="130.0" />
+      <Button fx:id="buttonShowAll" layoutX="139.0" layoutY="158.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show All" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="130.0" />
+      <Label fx:id="labelWrong" alignment="CENTER" layoutX="792.0" layoutY="231.0" prefHeight="25.0" prefWidth="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#d31515" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="759.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="18.0" />
          </font>

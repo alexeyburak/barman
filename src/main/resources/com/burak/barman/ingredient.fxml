@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="pane" stylesheets="@style/mainScenes.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.burak.barman.IngredientController">
    <children>
-      <ScrollPane layoutX="45.0" layoutY="82.0" prefHeight="478.0" prefWidth="670.0" stylesheets="@style/mainScenes.css">
+      <ScrollPane layoutX="296.0" layoutY="82.0" prefHeight="505.0" prefWidth="670.0" stylesheets="@style/mainScenes.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <content>
             <GridPane fx:id="grid" prefHeight="3.0" prefWidth="7.0" styleClass="grid-pane" stylesheets="@style/mainScenes.css">
               <rowConstraints>
@@ -24,7 +24,7 @@
       </ScrollPane>
       <HBox layoutX="34.0" layoutY="10.0" prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="icon" stylesheets="@style/top.css" text="Barman">
+            <Label fx:id="icon" styleClass="icon" stylesheets="@style/top.css" text="Barman">
                <font>
                   <Font size="28.0" />
                </font>
@@ -46,10 +46,10 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <TextField fx:id="findTextField" layoutX="755.0" layoutY="86.0" prefHeight="27.0" prefWidth="207.0" promptText="For example, vodka" styleClass="text" stylesheets="@style/authorization.css" />
-      <Button fx:id="findButton" layoutX="755.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" />
-      <Button fx:id="showAllButton" layoutX="885.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show all" />
-      <Label fx:id="labelWrong" layoutX="839.0" layoutY="274.0" textFill="#d76666">
+      <TextField fx:id="findTextField" layoutX="94.0" layoutY="92.0" prefHeight="27.0" prefWidth="207.0" promptText="For example, vodka" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="753.0" AnchorPane.topAnchor="85.0" />
+      <Button fx:id="findButton" layoutX="106.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="130.0" />
+      <Button fx:id="showAllButton" layoutX="211.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show all" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="130.0" />
+      <Label fx:id="labelWrong" alignment="CENTER" layoutX="64.0" layoutY="274.0" prefHeight="41.0" prefWidth="204.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textFill="#d76666" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="753.0" AnchorPane.topAnchor="191.0">
          <font>
             <Font size="16.0" />
          </font>
