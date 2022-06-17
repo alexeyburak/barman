@@ -60,7 +60,7 @@ public class MyBarController implements Initializable {
                 ItemCocktailController itemController = fxmlLoader.getController();
                 itemController.setData(cocktail, onClick);
                 grid.add(anchorPane, column++, row);
-                if (column == 3) {
+                if (column == 4) {
                     column = 0;
                     row++;
                 }
