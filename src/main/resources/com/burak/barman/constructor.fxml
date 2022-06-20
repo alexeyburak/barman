@@ -33,7 +33,7 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <ScrollPane layoutX="292.0" layoutY="100.0" prefHeight="475.0" prefWidth="710.0" stylesheets="@style/mainScenes.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="85.0">
+      <ScrollPane fx:id="scroll" layoutX="292.0" layoutY="100.0" prefHeight="475.0" prefWidth="710.0" stylesheets="@style/mainScenes.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="85.0">
          <content>
             <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0" styleClass="grid-pane" stylesheets="@style/mainScenes.css">
               <rowConstraints>
@@ -45,7 +45,7 @@
       <TextField fx:id="findTextField" layoutX="23.0" layoutY="86.0" prefHeight="27.0" prefWidth="201.0" promptText="For example, sex on the beach" styleClass="text" stylesheets="@style/authorization.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="759.0" AnchorPane.topAnchor="85.0" />
       <Button fx:id="buttonFind" layoutX="775.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Find" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="130.0" />
       <Button fx:id="buttonShowAll" layoutX="139.0" layoutY="158.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" styleClass="buttonSign" stylesheets="@style/authorization.css" text="Show All" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="130.0" />
-      <Label fx:id="labelWrong" alignment="CENTER" layoutX="792.0" layoutY="231.0" prefHeight="25.0" prefWidth="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#d31515" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="759.0" AnchorPane.topAnchor="200.0">
+      <Label fx:id="labelWrong" alignment="CENTER" layoutX="42.0" layoutY="200.0" prefHeight="25.0" prefWidth="193.0" styleClass="label-wrong" stylesheets="@style/authorization.css" textAlignment="CENTER" textFill="#d31515" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="310.0">
          <font>
             <Font size="18.0" />
          </font>

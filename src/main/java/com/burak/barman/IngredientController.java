@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
@@ -36,6 +37,7 @@ public class IngredientController implements Initializable {
     @FXML private Label icon;
     @FXML private TextField findTextField;
     @FXML private GridPane grid;
+    @FXML private ScrollPane scroll;
 
     private static final IngredientsDaoImpl ingredientsDao;
     static {
@@ -48,8 +50,10 @@ public class IngredientController implements Initializable {
             // If there are no ingredients
             if (ingredients.size() == 0) {
                 labelWrong.setText("No ingredients were found!");
+                scroll.setVisible(false);
                 return;
             }
+            scroll.setVisible(true);
             for (Ingredient ingredient : ingredients) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemIngredient.fxml"));

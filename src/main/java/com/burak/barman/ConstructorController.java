@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -43,6 +44,7 @@ public class ConstructorController implements Initializable  {
     @FXML private Label labelWrong;
     @FXML private Label icon;
     @FXML private GridPane grid;
+    @FXML private ScrollPane scroll;
     private ICatchClicking onClick;
     private static final CocktailsDaoImpl cocktailsDao;
     static {
@@ -56,8 +58,10 @@ public class ConstructorController implements Initializable  {
             // If there are no cocktails
             if (cocktails.size() == 0) {
                 labelWrong.setText("No cocktails were found!");
+                scroll.setVisible(false);
                 return;
             }
+            scroll.setVisible(true);
             for (Cocktail cocktail : cocktails) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemcocktail.fxml"));

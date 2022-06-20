@@ -107,7 +107,12 @@ public class CocktailsDaoImpl extends AbstractDao implements IDao<Cocktail> {
             prepareStatement = getConnection().prepareStatement("SELECT cocktails.name, GROUP_CONCAT(recipe.id_ingredient),GROUP_CONCAT(recipe.amount) FROM cocktails " +
                     "LEFT JOIN recipe ON recipe.id_cocktail=cocktails.id LEFT " +
                     "JOIN ingredients ON recipe.id_ingredient=ingredients.id  GROUP BY cocktails.id");
-            prepareStatementID = getConnection().prepareStatement("SELECT id, preparation, name, img FROM cocktails WHERE name LIKE '" + title + "%'");
+            prepareStatementID = getConnection().prepareStatement("SELECT c.id, c.preparation, c.name, c.img\n" +
+                    "FROM cocktails as c\n" +
+                    "LEFT JOIN recipe as r ON r.id_cocktail = c.id LEFT\n" +
+                    "JOIN ingredients as i ON r.id_ingredient=i.id\n" +
+                    "where IF (c.name LIKE '" + title + "%' = 0, i.title LIKE '%" + title + "%', c.name LIKE '" + title + "%')" +
+                    "GROUP BY c.id");
             resultSet = prepareStatement.executeQuery();
             resultSetID = prepareStatementID.executeQuery();
 
