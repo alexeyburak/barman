@@ -23,7 +23,6 @@ public class IngredientsDaoImpl extends AbstractDao implements IDao<Ingredient> 
         return DataBase.getInstance().getConnection();
     }
 
-
     @Override
     public Collection<Ingredient> findAll() {
         Collection<Ingredient> ingredients = new ArrayList<>();

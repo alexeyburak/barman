@@ -83,9 +83,7 @@ public class IngredientController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // If icon is clicked, go to the main page
-        icon.setOnMouseClicked(event -> {
-           buttonBack.fire();
-        });
+        icon.setOnMouseClicked(event -> buttonBack.fire());
 
         // If Enter is pressed on the keyboard
         findTextField.setOnKeyPressed(event -> {

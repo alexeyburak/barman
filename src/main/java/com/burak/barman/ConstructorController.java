@@ -109,9 +109,7 @@ public class ConstructorController implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // If icon is clicked, go to the main page
-        icon.setOnMouseClicked(event -> {
-            buttonBack.fire();
-        });
+        icon.setOnMouseClicked(event -> buttonBack.fire());
 
         // goToCocktail method after clicking on item
         onClick = this::goToCocktail;
